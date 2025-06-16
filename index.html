@@ -87,6 +87,14 @@
       font-size: .9rem;
       color: #777;
     }
+    .star {
+      font-size: 24px;
+      cursor: pointer;
+      color: gray;
+    }
+    .star.selected {
+      color: gold;
+    }
   </style>
 </head>
 <body>
@@ -96,8 +104,11 @@
 
   <main class="container">
     <section class="book-list">
+      
+      <!-- الكتب -->
+      <!-- يمكنك تكرار الكود التالي لكل كتاب وتعديل المعلومات -->
 
-      <!-- إيكادولي -->
+      <!-- مثال: إيكادولي -->
       <article class="book-card">
         <img src="https://th.bing.com/th/id/OIP.yJxNH3GikPIxcAdQ85vskQHaKl?r=0" alt="غلاف كتاب إيكادولي">
         <div class="book-details">
@@ -163,12 +174,12 @@
 
       <!-- سقطري -->
       <article class="book-card">
-        <img src="https://th.bing.com/th/id/OIP.5LnYFQzK_yvjP3BpGVHiTwAAAA?w=115&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="غلاف كتاب قسطري">
+        <img src="https://th.bing.com/th/id/OIP.5LnYFQzK_yvjP3BpGVHiTwAAAA?w=115&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="غلاف كتاب سقطري">
         <div class="book-details">
           <h2>📖 سقطري</h2>
-          <div class="rating" data-book="qastari">
+          <div class="rating" data-book="soqotra">
             <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-            <div class="rating-info" id="qastari-info"></div>
+            <div class="rating-info" id="soqotra-info"></div>
           </div>
           <div class="buttons">
             <a href="سقطري.pdf" class="read" target="_blank">قراءة الكتاب</a>
@@ -177,14 +188,14 @@
         </div>
       </article>
 
-       <!-- أمانوس-->
+      <!-- أمانوس -->
       <article class="book-card">
-        <img src="https://th.bing.com/th/id/OIP.PMrSAZWyhbxeb8Ky61aAXwAAAA?w=119&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="غلاف كتاب امانوس">
+        <img src="https://th.bing.com/th/id/OIP.PMrSAZWyhbxeb8Ky61aAXwAAAA?w=119&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="غلاف كتاب أمانوس">
         <div class="book-details">
           <h2>📖 أمانوس</h2>
-          <div class="rating" data-book="qastari">
+          <div class="rating" data-book="amanos">
             <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-            <div class="rating-info" id="qastari-info"></div>
+            <div class="rating-info" id="amanos-info"></div>
           </div>
           <div class="buttons">
             <a href="أمانوس.pdf" class="read" target="_blank">قراءة الكتاب</a>
