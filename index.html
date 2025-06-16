@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
+<meta charset="UTF-8">
+  <meta name="description" content="مكتبة القدس الإلكترونية - مكتبة عربية تحتوي على كتب وروايات للتحميل والقراءة المباشرة مجاناً.">
+  <meta name="keywords" content="مكتبة القدس, كتب PDF, روايات عربية, تحميل كتب, قراءة كتب, مكتبة إلكترونية">
+  <meta name="author" content="مكتبة القدس الإلكترونية">
+  <meta name="robots" content="index, follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>مكتبة القدس الإلكترونية 📚</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; }
     body {
@@ -211,33 +218,54 @@
     © 2025 مكتبة القدس الإلكترونية • جميع الحقوق محفوظة
   </footer>
 
-  <script>
-    function updateRatingInfo(bookKey) {
-      const infoEl = document.getElementById(`${bookKey}-info`);
-      const ratingData = JSON.parse(localStorage.getItem(`rating-${bookKey}`)) || { total: 0, count: 0 };
-      const average = ratingData.count ? (ratingData.total / ratingData.count).toFixed(1) : 0;
-      infoEl.textContent = `⭐ ${average} / 5 من ${ratingData.count} تقييمات`;
+ <script>
+  function updateRatingInfo(bookKey) {
+    const infoEl = document.getElementById(`${bookKey}-info`);
+    const ratingData = JSON.parse(localStorage.getItem(`rating-${bookKey}`)) || { total: 0, count: 0 };
+    const average = ratingData.count ? (ratingData.total / ratingData.count).toFixed(1) : 0;
+    infoEl.textContent = `⭐ ${average} / 5 من ${ratingData.count} تقييمات`;
+  }
+
+  const ratings = document.querySelectorAll('.rating');
+  ratings.forEach(ratingEl => {
+    const bookKey = ratingEl.dataset.book;
+    const stars = ratingEl.querySelectorAll('.star');
+
+    const userRated = localStorage.getItem(`rated-${bookKey}`) === 'true';
+
+    if (userRated) {
+      const ratingData = JSON.parse(localStorage.getItem(`rating-${bookKey}`));
+      const lastRating = ratingData ? Math.round(ratingData.total / ratingData.count) : 0;
+      stars.forEach((s, i) => s.classList.toggle('selected', i < lastRating));
+      stars.forEach(star => star.style.pointerEvents = 'none');
     }
 
-    const ratings = document.querySelectorAll('.rating');
-    ratings.forEach(ratingEl => {
-      const bookKey = ratingEl.dataset.book;
-      const stars = ratingEl.querySelectorAll('.star');
+    stars.forEach((star, index) => {
+      star.addEventListener('click', () => {
+        if (localStorage.getItem(`rated-${bookKey}`) === 'true') {
+          alert("لقد قمت بتقييم هذا الكتاب من قبل. شكرًا لمساهمتك!");
+          return;
+        }
 
-      stars.forEach((star, index) => {
-        star.addEventListener('click', () => {
-          const ratingValue = index + 1;
-          let ratingData = JSON.parse(localStorage.getItem(`rating-${bookKey}`)) || { total: 0, count: 0 };
-          ratingData.total += ratingValue;
-          ratingData.count += 1;
-          localStorage.setItem(`rating-${bookKey}`, JSON.stringify(ratingData));
-          stars.forEach((s, i) => s.classList.toggle('selected', i < ratingValue));
-          updateRatingInfo(bookKey);
-        });
+        const ratingValue = index + 1;
+        let ratingData = JSON.parse(localStorage.getItem(`rating-${bookKey}`)) || { total: 0, count: 0 };
+
+        ratingData.total += ratingValue;
+        ratingData.count += 1;
+
+        localStorage.setItem(`rating-${bookKey}`, JSON.stringify(ratingData));
+        localStorage.setItem(`rated-${bookKey}`, 'true');
+
+        stars.forEach((s, i) => s.classList.toggle('selected', i < ratingValue));
+        stars.forEach(star => star.style.pointerEvents = 'none');
+
+        updateRatingInfo(bookKey);
+        alert("تم تسجيل تقييمك بنجاح. شكرًا لمساهمتك!");
       });
-
-      updateRatingInfo(bookKey);
     });
-  </script>
+
+    updateRatingInfo(bookKey);
+  });
+</script>
 </body>
 </html>
