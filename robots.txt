@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://www.alqods-library.com/sitemap.xml
+Sitemap: https://aamer32.github.io/al-qods-library/sitemap.xml
