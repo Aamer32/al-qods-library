@@ -1,123 +1,287 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-  <meta name="description" content="مكتبة القدس الإلكترونية - مكتبة عربية تحتوي على كتب وروايات للتحميل والقراءة المباشرة مجاناً.">
-  <meta name="keywords" content="مكتبة القدس, كتب PDF, روايات عربية, تحميل كتب, قراءة كتب, مكتبة إلكترونية">
-  <meta name="author" content="مكتبة القدس الإلكترونية">
-  <meta name="robots" content="index, follow">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="description" content="مكتبة القدس الإلكترونية - مكتبة عربية تحتوي على كتب وروايات للتحميل والقراءة المباشرة مجاناً." />
+<meta name="keywords" content="مكتبة القدس, كتب PDF, روايات عربية, تحميل كتب, قراءة كتب, مكتبة إلكترونية" />
+<meta name="author" content="مكتبة القدس الإلكترونية" />
+<meta name="robots" content="index, follow" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>مكتبة القدس الإلكترونية 📚</title>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; }
-    body {
+<title>مكتبة القدس الإلكترونية 📚</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet" />
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Tajawal', sans-serif;
+    color: #333;
+    background-color: #f2f7f9;
+    line-height: 1.6;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  /* الشريط العلوي */
+  header {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+  }
+  header .site-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    user-select: none;
+  }
+  header button.menu-toggle {
+    background: none;
+    border: none;
+    color: #ecf0f1;
+    font-size: 1.8rem;
+    cursor: pointer;
+    user-select: none;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  header button.menu-toggle:focus {
+    outline: 2px solid #2980b9;
+    outline-offset: 2px;
+  }
+
+  /* الجسم الرئيسي مع القائمة والصفحة */
+  .main-wrapper {
+    flex: 1;
+    display: flex;
+    min-height: calc(100vh - 60px);
+  }
+
+  /* القائمة الجانبية */
+  nav {
+    width: 260px;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding-top: 1rem;
+    flex-shrink: 0;
+    position: fixed;
+    top: 60px; /* أسفل الشريط العلوي */
+    bottom: 0;
+    right: 0;
+    overflow-y: auto;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+  }
+  nav.closed {
+    transform: translateX(260px);
+  }
+  nav ul {
+    list-style: none;
+    padding: 0 0 1rem 0;
+    margin: 0;
+  }
+  nav ul li {
+    cursor: pointer;
+    padding: 0.9rem 1.5rem;
+    border-bottom: 1px solid #34495e;
+    user-select: none;
+    position: relative;
+  }
+  nav ul li:hover {
+    background-color: #34495e;
+  }
+  nav ul li > ul {
+    display: none;
+    list-style: none;
+    padding-right: 1rem;
+  }
+  nav ul li.expanded > ul {
+    display: block;
+  }
+  nav ul li > ul li {
+    padding: 0.6rem 1.5rem;
+    border: none;
+    background-color: #3d566e;
+  }
+  nav ul li > ul li:hover {
+    background-color: #4a6b8b;
+  }
+  nav ul li ul li ul {
+    padding-right: 1.5rem;
+  }
+  nav ul li ul li.expanded > ul {
+    display: block;
+  }
+
+  nav ul li .submenu-arrow {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg);
+    transition: transform 0.3s ease;
+    font-weight: bold;
+  }
+  nav ul li.expanded > .submenu-arrow {
+    transform: translateY(-50%) rotate(90deg);
+  }
+
+  /* محتوى الصفحة */
+  main.container {
+    flex: 1;
+    padding: 2rem 2rem 2rem 2rem;
+    margin-right: 260px; /* نفس عرض الناف */
+    overflow-y: auto;
+    background: #f2f7f9;
+  }
+
+  .book-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .book-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    overflow: hidden;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .book-card:hover {
+    transform: translateY(-5px);
+  }
+  .book-card img {
+    width: 100%;
+    height: auto;
+    max-height: 350px;
+    object-fit: cover;
+  }
+  .book-details {
+    padding: 1rem;
+    flex: 1;
+  }
+  .book-details h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+    color: #2c3e50;
+  }
+  .buttons {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .buttons a {
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: 500;
+    transition: background 0.3s;
+  }
+  .buttons .read {
+    background-color: #2980b9;
+  }
+  .buttons .read:hover {
+    background-color: #1f5f85;
+  }
+  .buttons .download {
+    background-color: #27ae60;
+  }
+  .buttons .download:hover {
+    background-color: #1f8447;
+  }
+  footer {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 2rem;
+  }
+  .star {
+    font-size: 24px;
+    cursor: pointer;
+    color: gray;
+  }
+  .star.selected {
+    color: gold;
+  }
+
+  /* التوافق مع الشاشات الصغيرة */
+  @media (max-width: 900px) {
+    nav {
+      position: fixed;
+      top: 60px;
+      bottom: 0;
+      right: 0;
+      width: 260px;
+      transform: translateX(260px);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+    nav.open {
+      transform: translateX(0);
+    }
+    main.container {
       margin: 0;
-      padding: 0;
-      font-family: 'Tajawal', sans-serif;
-      color: #333;
-      background-color: #f2f7f9;
-      line-height: 1.6;
-    }
-    header {
-      background-color: #2c3e50;
-      padding: 1.5rem;
-      text-align: center;
-      color: #ecf0f1;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-    .container {
-      max-width: 960px;
-      margin: 2rem auto;
-      padding: 0 1rem;
+      padding: 1rem;
+      margin-right: 0 !important;
     }
     .book-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: 1fr !important;
     }
-    .book-card {
-      background: #ffffff;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      overflow: hidden;
-      transition: transform 0.2s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    .book-card:hover {
-      transform: translateY(-5px);
-    }
-    .book-card img {
-      width: 100%;
-      height: auto;
-      max-height: 350px;
-      object-fit: cover;
-    }
-    .book-details {
-      padding: 1rem;
-      flex: 1;
-    }
-    .book-details h2 {
-      margin: 0 0 .5rem;
-      font-size: 1.25rem;
-      color: #2c3e50;
-    }
-    .buttons {
-      margin-top: 1rem;
-      display: flex;
-      gap: .5rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .buttons a {
-      text-decoration: none;
-      padding: .6rem 1.2rem;
-      border-radius: 6px;
-      color: #fff;
-      font-weight: 500;
-      transition: background 0.3s;
-    }
-    .buttons .read { background-color: #2980b9; }
-    .buttons .read:hover { background-color: #1f5f85; }
-    .buttons .download { background-color: #27ae60; }
-    .buttons .download:hover { background-color: #1f8447; }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: .9rem;
-      color: #777;
-    }
-    .star {
-      font-size: 24px;
-      cursor: pointer;
-      color: gray;
-    }
-    .star.selected {
-      color: gold;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>📚 مكتبة القدس الإلكترونية</h1>
-  </header>
 
-  <main class="container">
-    <section class="book-list">
-      
-      <!-- الكتب -->
-      <!-- يمكنك تكرار الكود التالي لكل كتاب وتعديل المعلومات -->
+<header>
+  <div class="site-title">مكتبة القدس الإلكترونية 📚</div>
+  <button class="menu-toggle" aria-label="فتح القائمة">☰</button>
+</header>
 
-      <!-- مثال: إيكادولي -->
+<div class="main-wrapper">
+  <nav class="closed" aria-label="القائمة الرئيسية">
+    <ul>
+      <li id="menu-home" tabindex="0">الرئيسية</li>
+      <li id="menu-books" tabindex="0">
+        الكتب
+        <span class="submenu-arrow" aria-hidden="true">▶</span>
+        <ul>
+          <li id="menu-novels" tabindex="0">
+            أجزاء الروايات
+            <span class="submenu-arrow" aria-hidden="true">▶</span>
+            <ul>
+              <li tabindex="0">مملكة البلاغة (6)</li>
+              <li tabindex="0">غربة الياسمين (3)</li>
+            </ul>
+          </li>
+          <li tabindex="0">خيال علمي</li>
+          <li tabindex="0">دينية</li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="container" tabindex="0">
+    <section class="book-list" id="books-section">
       <article class="book-card">
-        <img src="https://th.bing.com/th/id/OIP.yJxNH3GikPIxcAdQ85vskQHaKl?r=0" alt="غلاف كتاب إيكادولي">
+        <img src="https://th.bing.com/th/id/OIP.yJxNH3GikPIxcAdQ85vskQHaKl?r=0" alt="غلاف كتاب إيكادولي" />
         <div class="book-details">
           <h2>📖 إيكادولي</h2>
           <div class="rating" data-book="ikadoli">
@@ -131,9 +295,8 @@
         </div>
       </article>
 
-      <!-- أوبال -->
       <article class="book-card">
-        <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1736849771i/38261280.jpg" alt="غلاف كتاب أوبال">
+        <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1736849771i/38261280.jpg" alt="غلاف كتاب أوبال" />
         <div class="book-details">
           <h2>📖 أوبال</h2>
           <div class="rating" data-book="opal">
@@ -147,9 +310,8 @@
         </div>
       </article>
 
-      <!-- الجساسة -->
       <article class="book-card">
-        <img src="https://th.bing.com/th/id/OIP.VSyny-2NqjCXgFX7wO0iUQAAAA?r=0" alt="غلاف كتاب الجساسة">
+        <img src="https://th.bing.com/th/id/OIP.VSyny-2NqjCXgFX7wO0iUQAAAA?r=0" alt="غلاف كتاب الجساسة" />
         <div class="book-details">
           <h2>📖 الجساسة</h2>
           <div class="rating" data-book="jasasa">
@@ -160,65 +322,91 @@
             <a href="الجساسة.pdf" class="read" target="_blank">👁️قراءة الكتاب</a>
             <a href="الجساسة.pdf" class="download" download>📥تحميل الكتاب</a>
           </div>
-        </div>
-      </article>
-
-      <!-- سيروش -->
-      <article class="book-card">
-        <img src="https://th.bing.com/th/id/OIP.3EroTistDdiMnDbzPy1hRgHaLH?r=0" alt="غلاف كتاب سيروش">
-        <div class="book-details">
-          <h2>📖 سيروش</h2>
-          <div class="rating" data-book="siroush">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-            <div class="rating-info" id="siroush-info"></div>
-          </div>
-          <div class="buttons">
-            <a href="سيروش.pdf" class="read" target="_blank">👁️قراءة الكتاب</a>
-            <a href="سيروش.pdf" class="download" download>📥تحميل الكتاب</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- سقطري -->
-      <article class="book-card">
-        <img src="https://th.bing.com/th/id/OIP.5LnYFQzK_yvjP3BpGVHiTwAAAA?w=115&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="غلاف كتاب سقطري">
-        <div class="book-details">
-          <h2>📖 سقطري</h2>
-          <div class="rating" data-book="soqotra">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-            <div class="rating-info" id="soqotra-info"></div>
-          </div>
-          <div class="buttons">
-            <a href="سقطري.pdf" class="read" target="_blank">👁️قراءة الكتاب</a>
-            <a href="سقطري.pdf" class="download" download>📥تحميل الكتاب</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- أمانوس -->
-      <article class="book-card">
-        <img src="https://th.bing.com/th/id/OIP.PMrSAZWyhbxeb8Ky61aAXwAAAA?w=119&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="غلاف كتاب أمانوس">
+            <article class="book-card">
+        <img src="https://th.bing.com/th/id/OIP.dZ8Ml6U0NWZDnsXgX5HdgQAAAA?w=208&h=285&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="غلاف كتاب أمانوس " />
         <div class="book-details">
           <h2>📖 أمانوس</h2>
           <div class="rating" data-book="amanos">
             <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
             <div class="rating-info" id="amanos-info"></div>
-          </div>
+             </div>
           <div class="buttons">
             <a href="أمانوس.pdf" class="read" target="_blank">👁️قراءة الكتاب</a>
             <a href="أمانوس.pdf" class="download" download>📥تحميل الكتاب</a>
-          </div>
         </div>
+              <article class="book-card">
+        <img src="https://th.bing.com/th/id/OIP.AtGRYJQpAOhBxCtCpf9iqgHaKe?r=0&rs=1&pid=ImgDetMain" alt="غلاف كتاب كويكول " />
+        <div class="book-details">
+          <h2>📖 كويكول</h2>
+          <div class="rating" data-book="kowikoul">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            <div class="rating-info" id="kouwikoul-info"></div>
+             </div>
+          <div class="buttons">
+            <a href="كويكول.pdf" class="read" target="_blank">👁️قراءة الكتاب</a>
+            <a href="كويكول.pdf" class="download" download>📥تحميل الكتاب</a>
+             </div>
+              <article class="book-card">
+        <img src="https://th.bing.com/th/id/OIP.5LnYFQzK_yvjP3BpGVHiTwAAAA?w=115&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"غلاف كتاب سقطري " />
+        <div class="book-details">
+          <h2>📖 سقطري</h2>
+          <div class="rating" data-book="soqtri">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            <div class="rating-info" id="soqtri-info"></div>
+             </div>
+          <div class="buttons">
+            <a href=سقطري.pdf" class="read" target="_blank">👁️قراءة الكتاب</a>
+            <a href="سقطري.pdf" class="download" download>📥تحميل الكتاب</a>
+             </div>
+              <article class="book-card">
+        <img src="https://th.bing.com/th/id/OIP._gc0_X0T3ToNkC01rvyRFAAAAA?w=137&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"غلاف كتاب سيروش" />
+        <div class="book-details">
+          <h2>📖 سيروش</h2>
+          <div class="rating" data-book="sirouch">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            <div class="rating-info" id="sirouch-info"></div>
+             </div>
+          <div class="buttons">
+            <a href=سيروش.pdf" class="read" target="_blank">👁️قراءة الكتاب</a>
+            <a href="سيروش.pdf" class="download" download>📥تحميل الكتاب</a>
       </article>
-
     </section>
   </main>
+</div>
 
-  <footer>
-    © 2025 مكتبة القدس الإلكترونية • جميع الحقوق محفوظة
-  </footer>
+<footer>© 2025 مكتبة القدس الإلكترونية • جميع الحقوق محفوظة</footer>
+
 
  <script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('nav');
+
+  menuToggle.addEventListener('click', () => {
+    nav.classList.toggle('closed');
+    nav.classList.toggle('open');
+  });
+
+  const menuItems = nav.querySelectorAll('li');
+
+  menuItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      if (item.id === 'menu-home') {
+        nav.classList.add('closed');
+        nav.classList.remove('open');
+        document.getElementById('books-section').scrollIntoView({ behavior: 'smooth' });
+        menuItems.forEach(i => i.classList.remove('expanded'));
+        return;
+      }
+      if (item.querySelector('ul')) {
+        e.stopPropagation();
+        item.classList.toggle('expanded');
+      }
+    });
+  });
+</script>
+
+    
+<script>
   function updateRatingInfo(bookKey) {
     const infoEl = document.getElementById(`${bookKey}-info`);
     const ratingData = JSON.parse(localStorage.getItem(`rating-${bookKey}`)) || { total: 0, count: 0 };
@@ -267,5 +455,7 @@
     updateRatingInfo(bookKey);
   });
 </script>
+
+
 </body>
 </html>
