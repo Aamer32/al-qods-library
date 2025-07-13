@@ -1,417 +1,499 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head> 
-<meta charset="UTF-8" />
-<meta name="description" content="مكتبة القدس الإلكترونية - مكتبة عربية تحتوي على كتب وروايات للتحميل والقراءة المباشرة مجاناً." />
-<meta name="keywords" content="مكتبة القدس, كتب PDF, روايات عربية, تحميل كتب, قراءة كتب, مكتبة إلكترونية" />
-<meta name="author" content="مكتبة القدس الإلكترونية" />
-<meta name="robots" content="index, follow" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="مكتبة القدس الإلكترونية - مكتبة عربية تحتوي على كتب وروايات للتحميل والقراءة المباشرة مجاناً." />
+  <meta name="keywords" content="مكتبة القدس, كتب PDF, روايات عربية, تحميل كتب, قراءة كتب, مكتبة إلكترونية" />
+  <meta name="author" content="مكتبة القدس الإلكترونية" />
+  <meta name="robots" content="index, follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مكتبة القدس الإلكترونية 📚</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-color: #1a5f1a;
+      --secondary-color: #d4af37;
+      --accent-color: #8b4513;
+      --light-bg: #f5f5f0;
+      --dark-bg: #121f0f;
+      --text-color: #333;
+      --light-text: #f5f5f0;
+      --card-bg: #fff;
+      --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --btn-primary: #1a5f1a;
+      --btn-primary-hover: #134713;
+      --btn-secondary: #d4af37;
+      --btn-secondary-hover: #c19b2e;
+      --dark-primary: #2a3a24;
+      --dark-secondary: #8a6d3b;
+      --dark-card-bg: #1e1e1e;
+      --dark-text: #e0e0e0;
+    }
 
-<title>مكتبة القدس الإلكترونية 📚</title>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
-<style>
-  :root {
-   
-    --primary-color: #1a5f1a; 
-    --secondary-color: #d4af37; 
-    --accent-color: #8b4513; 
-    --light-bg: #f5f5f0; 
-    --dark-bg: #121f0f; 
-    --text-color: #333;
-    --light-text: #f5f5f0;
-    --card-bg: #fff;
-    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
     
+    body {
+      font-family: 'Tajawal', sans-serif;
+      color: var(--text-color);
+      background-color: var(--light-bg);
+      line-height: 1.6;
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+      transition: background-color 0.3s, color 0.3s;
+    }
 
-    --btn-primary: #1a5f1a;
-    --btn-primary-hover: #134713;
-    --btn-secondary: #d4af37;
-    --btn-secondary-hover: #c19b2e;
-    --btn-danger: #c0392b;
-    --btn-danger-hover: #a3291b;
-    
-  
-    --dark-primary: #2a3a24;
-    --dark-secondary: #8a6d3b;
-    --dark-card-bg: #1e1e1e;
-    --dark-text: #e0e0e0;
-  }
-
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    font-family: 'Tajawal', sans-serif;
-    color: var(--text-color);
-    background-color: var(--light-bg);
-    line-height: 1.6;
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    transition: background-color 0.3s, color 0.3s;
-  }
-
-  header {
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    color: var(--light-text);
-    padding: 0.8rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    position: relative;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  header .site-title {
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin: 0;
-    text-align: center;
-    flex-grow: 1;
-    color: var(--secondary-color);
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-  }
-  
-  .header-controls {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .menu-toggle, #theme-toggle {
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: var(--secondary-color);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-  
-  .menu-toggle:hover, #theme-toggle:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.1);
-  }
-  
-  .search-container {
-    width: 100%;
-    margin: 1rem 0 0;
-    position: relative;
-  }
-  
-  #search-input {
-    width: 100%;
-    padding: 0.8rem 1.2rem;
-    border: 2px solid var(--secondary-color);
-    border-radius: 30px;
-    font-family: 'Tajawal', sans-serif;
-    background: rgba(255, 255, 255, 0.9);
-    transition: all 0.3s;
-  }
-  
-  #search-input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(26, 95, 26, 0.2);
-  }
-  
-  #search-btn {
-    position: absolute;
-    left: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--secondary-color);
-    color: var(--primary-color);
-    border: none;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-  
-  #search-btn:hover {
-    background: var(--primary-color);
-    color: var(--secondary-color);
-  }
-  
-  .main-wrapper {
-    flex: 1;
-    display: flex;
-  }
-  
-  nav {
-    width: 280px;
-    background: linear-gradient(to bottom, var(--primary-color), #2a3a24);
-    color: var(--light-text);
-    padding: 1.5rem 0;
-    transition: transform 0.3s;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  nav.closed {
-    transform: translateX(280px);
-  }
-  
-  nav ul {
-    list-style: none;
-  }
-  
-  nav ul li {
-    padding: 0.9rem 1.5rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    position: relative;
-    border-right: 3px solid transparent;
-  }
-  
-  nav ul li:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-right-color: var(--secondary-color);
-  }
-  
-  nav ul li.active-category {
-    background: rgba(212, 175, 55, 0.2);
-    border-right-color: var(--secondary-color);
-    font-weight: 500;
-  }
-  
-  .submenu-arrow {
-    transition: transform 0.3s;
-  }
-  
-  .expanded > .submenu-arrow {
-    transform: rotate(90deg);
-  }
-  
-  main.container {
-    flex: 1;
-    padding: 2rem;
-    background: var(--light-bg);
-  }
-  
-  .book-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-  }
-  
-  .book-card {
-    background: var(--card-bg);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: var(--card-shadow);
-    transition: all 0.3s;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .book-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-  }
-  
-  .book-card img {
-    width: 100%;
-    height: 380px;
-    object-fit: cover;
-    border-bottom: 3px solid var(--secondary-color);
-  }
-  
-  .book-details {
-    padding: 1.5rem;
-    flex: 1;
-  }
-  
-  .book-details h2 {
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-    font-size: 1.3rem;
-  }
-  
-  .book-meta {
-    display: flex;
-    gap: 1rem;
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 1rem;
-    flex-wrap: wrap;
-  }
-  
-  .book-meta span {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-  }
-  
-  .buttons {
-    display: flex;
-    gap: 0.8rem;
-    margin-top: 1.5rem;
-  }
-  
-  .buttons a {
-    flex: 1;
-    text-align: center;
-    padding: 0.7rem;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s;
-  }
-  
-  .buttons .read {
-    background: var(--btn-primary);
-    color: white;
-  }
-  
-  .buttons .read:hover {
-    background: var(--btn-primary-hover);
-  }
-  
-  .buttons .download {
-    background: var(--btn-secondary);
-    color: var(--primary-color);
-  }
-  
-  .buttons .download:hover {
-    background: var(--btn-secondary-hover);
-  }
-  
-  .rating {
-    margin: 1rem 0;
-    direction: ltr;
-  }
-  
-  .star {
-    color: var(--secondary-color);
-    font-size: 1.4rem;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  
-  .star:hover, .star.selected {
-    color: gold;
-    transform: scale(1.2);
-  }
-  
-  /* قسم التعليقات */
-  .comments-section {
-    margin-top: 1.5rem;
-    padding: 1.5rem;
-    background: rgba(212, 175, 55, 0.05);
-    border-radius: 8px;
-    border-top: 2px solid var(--secondary-color);
-  }
-  
-  .comments-section h3 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-  }
-  
-  .comment-form {
-    margin-top: 1rem;
-  }
-  
-  .comment-form textarea {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-family: 'Tajawal', sans-serif;
-    resize: vertical;
-    min-height: 100px;
-    transition: all 0.3s;
-  }
-  
-  .comment-form textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(26, 95, 26, 0.1);
-  }
-  
-  .comment-form button {
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-family: 'Tajawal', sans-serif;
-    transition: all 0.3s;
-  }
-  
-  .comment-form button:hover {
-    background: var(--btn-primary-hover);
-  }
-  
-  /* الوضع الليلي */
-  body.dark-mode {
-    background-color: var(--dark-bg);
-    color: var(--dark-text);
-  }
-  
-  body.dark-mode main.container {
-    background: var(--dark-bg);
-  }
-  
-  body.dark-mode .book-card {
-    background: var(--dark-card-bg);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  }
-  
-  body.dark-mode .book-details h2 {
-    color: var(--secondary-color);
-  }
-  
-  body.dark-mode .comments-section {
-    background: rgba(42, 58, 36, 0.5);
-  }
-  
-  /* التجاوب مع الشاشات الصغيرة */
-  @media (max-width: 768px) {
+    /* تحسينات الهيدر */
     header {
-      padding: 0.8rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: var(--light-text);
+      padding: 0.8rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
     
     .site-title {
-      font-size: 1.3rem;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin: 0;
+      text-align: center;
+      flex-grow: 1;
+      color: var(--secondary-color);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+    
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .menu-toggle, #theme-toggle {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: var(--secondary-color);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .menu-toggle:hover, #theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+    
+    .search-container {
+      width: 100%;
+      margin: 1rem 0 0;
+      position: relative;
+    }
+    
+    #search-input {
+      width: 100%;
+      padding: 0.8rem 1.2rem;
+      border: 2px solid var(--secondary-color);
+      border-radius: 30px;
+      font-family: 'Tajawal', sans-serif;
+      background: rgba(255, 255, 255, 0.9);
+      transition: all 0.3s;
+    }
+    
+    #search-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(26, 95, 26, 0.2);
+    }
+    
+    #search-btn {
+      position: absolute;
+      left: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--secondary-color);
+      color: var(--primary-color);
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    #search-btn:hover {
+      background: var(--primary-color);
+      color: var(--secondary-color);
+    }
+    
+    /* تحسينات التنقل */
+    .main-wrapper {
+      flex: 1;
+      display: flex;
     }
     
     nav {
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
       width: 280px;
-      z-index: 1000;
+      background: linear-gradient(to bottom, var(--primary-color), #2a3a24);
+      color: var(--light-text);
+      padding: 1.5rem 0;
+      transition: transform 0.3s ease-in-out;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    
+    nav.closed {
       transform: translateX(280px);
     }
     
-    nav.open {
-      transform: translateX(0);
+    nav ul {
+      list-style: none;
     }
     
+    nav ul li {
+      position: relative;
+    }
+    
+    nav ul li a {
+      display: block;
+      padding: 0.9rem 1.5rem;
+      color: var(--light-text);
+      text-decoration: none;
+      transition: all 0.3s;
+      border-right: 3px solid transparent;
+    }
+    
+    nav ul li a:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-right-color: var(--secondary-color);
+    }
+    
+    nav ul li.active-category a {
+      background: rgba(212, 175, 55, 0.2);
+      border-right-color: var(--secondary-color);
+      font-weight: 500;
+    }
+    
+    .submenu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-in-out;
+      background: rgba(0, 0, 0, 0.1);
+    }
+    
+    .submenu.show {
+      max-height: 1000px;
+    }
+    
+    .submenu-arrow {
+      transition: transform 0.3s;
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    .expanded > .submenu-arrow {
+      transform: translateY(-50%) rotate(90deg);
+    }
+    
+    /* تحسينات المحتوى الرئيسي */
     main.container {
-      padding: 1rem;
-      margin-right: 0;
+      flex: 1;
+      padding: 2rem;
+      background: var(--light-bg);
+      margin-right: 280px;
+      transition: margin 0.3s ease-in-out;
     }
     
     .book-list {
-      grid-template-columns: 1fr;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
     }
-  }
-</style>
+    
+    .book-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .book-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .book-card img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      border-bottom: 3px solid var(--secondary-color);
+    }
+    
+    .book-details {
+      padding: 1.5rem;
+      flex: 1;
+    }
+    
+    .book-details h2 {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+    
+    .book-meta {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .book-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    
+    .buttons {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+    
+    .buttons a, .buttons button {
+      flex: 1;
+      text-align: center;
+      padding: 0.7rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      font-family: 'Tajawal', sans-serif;
+    }
+    
+    .buttons .read {
+      background: var(--btn-primary);
+      color: white;
+    }
+    
+    .buttons .read:hover {
+      background: var(--btn-primary-hover);
+    }
+    
+    .buttons .download {
+      background: var(--btn-secondary);
+      color: var(--primary-color);
+    }
+    
+    .buttons .download:hover {
+      background: var(--btn-secondary-hover);
+    }
+    
+    .buttons .favorite {
+      background: #e74c3c;
+      color: white;
+    }
+    
+    .buttons .favorite:hover {
+      background: #c0392b;
+    }
+    
+    .rating {
+      margin: 1rem 0;
+      direction: ltr;
+    }
+    
+    .star {
+      color: var(--secondary-color);
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .star:hover, .star.selected {
+      color: gold;
+      transform: scale(1.2);
+    }
+    
+    /* تحسينات قسم التعليقات */
+    .comments-section {
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      background: rgba(212, 175, 55, 0.05);
+      border-radius: 8px;
+      border-top: 2px solid var(--secondary-color);
+    }
+    
+    .comments-section h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    
+    .comment {
+      background: rgba(212, 175, 55, 0.1);
+      padding: 0.8rem;
+      border-radius: 6px;
+      margin-bottom: 0.8rem;
+    }
+    
+    .comment-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+    
+    .comment-form {
+      margin-top: 1rem;
+    }
+    
+    .comment-form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: 'Tajawal', sans-serif;
+      resize: vertical;
+      min-height: 100px;
+      transition: all 0.3s;
+    }
+    
+    .comment-form textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(26, 95, 26, 0.1);
+    }
+    
+    .comment-form button {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Tajawal', sans-serif;
+      transition: all 0.3s;
+      margin-top: 0.5rem;
+    }
+    
+    .comment-form button:hover {
+      background: var(--btn-primary-hover);
+    }
+    
+    /* الوضع الليلي */
+    body.dark-mode {
+      background-color: var(--dark-bg);
+      color: var(--dark-text);
+    }
+    
+    body.dark-mode main.container {
+      background: var(--dark-bg);
+    }
+    
+    body.dark-mode .book-card {
+      background: var(--dark-card-bg);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    body.dark-mode .book-details h2 {
+      color: var(--secondary-color);
+    }
+    
+    body.dark-mode .comments-section {
+      background: rgba(42, 58, 36, 0.5);
+    }
+    
+    /* رسائل التنبيه */
+    .alert {
+      padding: 0.8rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+      text-align: center;
+    }
+    
+    .alert-success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    
+    .alert-error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    
+    /* التجاوب مع الشاشات الصغيرة */
+    @media (max-width: 768px) {
+      header {
+        padding: 0.8rem;
+      }
+      
+      .site-title {
+        font-size: 1.3rem;
+      }
+      
+      nav {
+        width: 250px;
+        transform: translateX(250px);
+      }
+      
+      nav.open {
+        transform: translateX(0);
+      }
+      
+      main.container {
+        padding: 1rem;
+        margin-right: 0;
+      }
+      
+      .book-list {
+        grid-template-columns: 1fr;
+      }
+      
+      .book-card img {
+        height: 300px;
+      }
+    }
+    
+    /* تحسينات للشاشات الكبيرة */
+    @media (min-width: 1200px) {
+      .book-list {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      }
+    }
+    
+    /* تحميل متدرج للصور */
+    img.lazy {
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    img.lazy.loaded {
+      opacity: 1;
+    }
+  </style>
 </head>
 <body>
 
@@ -430,55 +512,49 @@
 </header>
 
 <div class="main-wrapper">
-  <nav class=closed>
+  <nav class="closed">
     <ul>
-      <li id="menu-home" class="active-category" tabindex="0">الرئيسية</li>
-      <li id="menu-books" tabindex="0">
-        الكتب
-        <span class="submenu-arrow" aria-hidden="true">▶</span>
-        <ul>
-          <li id="menu-novels" tabindex="0">
-            أجزاء الروايات
-            <span class="submenu-arrow" aria-hidden="true">▶</span>
-            <ul>
-              <li tabindex="0" data-category="balagha">مملكة البلاغة (6)</li>
-              <li tabindex="0" data-category="Malhamat">ملحمة الطين و النار (5)</li>
+      <li class="active-category"><a href="#">الرئيسية</a></li>
+      <li>
+        <a href="#">الكتب <span class="submenu-arrow">▶</span></a>
+        <ul class="submenu">
+          <li>
+            <a href="#">روايات <span class="submenu-arrow">▶</span></a>
+            <ul class="submenu">
+              <li><a href="#" data-category="balagha">مملكة البلاغة (6)</a></li>
+              <li><a href="#" data-category="Malhamat">ملحمة الطين و النار (5)</a></li>
             </ul>
           </li>
-        <li id="menu-novels" tabindex="0">
-          المؤلفين
-            <span class="submenu-arrow" aria-hidden="true">▶</span>
-            <ul>
-              <li tabindex="0" data-category="hanan">حنان لا شين</li>
-              <li tabindex="0" data-category="al hamdan">أحمد آل الحمدان</li>
+          <li>
+            <a href="#">المؤلفين <span class="submenu-arrow">▶</span></a>
+            <ul class="submenu">
+              <li><a href="#" data-category="hanan">حنان لا شين</a></li>
+              <li><a href="#" data-category="al hamdan">أحمد آل الحمدان</a></li>
             </ul>
+          </li>
+          <li><a href="#" data-category="religion">دينية</a></li>
+          <li><a href="#" data-category="history">تاريخية</a></li>
         </ul>
-          <li tabindex="0" data-category="religion">دينية</li>
-          <li tabindex="0" data-category="history">تاريخية</li>
-        </ul>
-  </li>
-      <li tabindex="0">📥الأكثر تحميلاً</li>
-      <li tabindex="0">عن المكتبة</li>
+      </li>
+      <li><a href="#">📥 الأكثر تحميلاً</a></li>
+      <li><a href="#">عن المكتبة</a></li>
     </ul>
   </nav>
 
   <main class="container" tabindex="0">
+    <div id="alerts-container"></div>
+    
     <section class="book-list" id="books-section">
-      <div class="no-results" id="no-results">
-        <img src="https://via.placeholder.com/150" alt="لا توجد نتائج" />
-        
-      </div>
-      
-      <article class="book-card" data-category="balagha" data-author="أحمد خالد" data-pages="320" data-year="2023">
-        <img src="https://th.bing.com/th/id/OIP.yJxNH3GikPIxcAdQ85vskQHaKl?r=0" alt="غلاف كتاب إيكادولي" />
+      <article class="book-card" data-category="balagha" data-author="حنان لاشين" data-pages="316" data-year="2018">
+        <img class="lazy" data-src="https://th.bing.com/th/id/OIP.yJxNH3GikPIxcAdQ85vskQHaKl?r=0" alt="غلاف كتاب إيكادولي" />
         <div class="book-details">
-          <h2> 📖 ايكادولي</h2>
+          <h2>📖 ايكادولي</h2>
           <div class="book-meta">
-            <span>📖 حنان لاشين </span>
-            <span>📅 2018 </span>
+            <span>📖 حنان لاشين</span>
+            <span>📅 2018</span>
             <span>📄 316 صفحة</span>
           </div>
-        </p> خيالية تحكي قصة مملكة البلاغة وأسرارها الغامضة  </p>
+          <p>خيالية تحكي قصة مملكة البلاغة وأسرارها الغامضة</p>
           <div class="rating" data-book="ikadoli">
             <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
             <div class="rating-info" id="ikadoli-info"></div>
@@ -486,6 +562,7 @@
           <div class="buttons">
             <a href="إيكادولي.pdf" class="read" target="_blank">👁️ قراءة</a>
             <a href="إيكادولي.pdf" class="download" download>📥 تحميل</a>
+            <button class="favorite" data-book="ikadoli">❤️ حفظ</button>
           </div>
           
           <div class="comments-section">
@@ -498,27 +575,28 @@
           </div>
         </div>
       </article>
-            <article class="book-card" data-category="balagha">
-        <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1736849771i/38261280.jpg" alt="غلاف كتاب أوبال" />
+      
+      <article class="book-card" data-category="balagha" data-author="حنان لاشين" data-pages="352" data-year="2019">
+        <img class="lazy" data-src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1736849771i/38261280.jpg" alt="غلاف كتاب أوبال" />
         <div class="book-details">
-          <h2> 📖 اوبال</h2>
+          <h2>📖 اوبال</h2>
           <div class="rating" data-book="opal">
             <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
             <div class="rating-info" id="opal-info"></div>
           </div>
           <div class="book-meta">
-            <span>📖 حنان لاشين </span>
-            <span>📅 2019 </span>
+            <span>📖 حنان لاشين</span>
+            <span>📅 2019</span>
             <span>📄 352 صفحة</span>
           </div>
-                    <div class="buttons">
+          <p>رواية تحكي قصة جديدة في عالم مملكة البلاغة</p>
+          <div class="buttons">
             <a href="أوبال.pdf" class="read" target="_blank">👁️ قراءة</a>
             <a href="أوبال.pdf" class="download" download>📥 تحميل</a>
+            <button class="favorite" data-book="opal">❤️ حفظ</button>
           </div>
-        </div>
-      </article>
-
-   <div class="comments-section">
+          
+          <div class="comments-section">
             <h3>التعليقات</h3>
             <div class="comments-list"></div>
             <form class="comment-form">
@@ -526,56 +604,42 @@
               <button type="submit">إرسال التعليق</button>
             </form>
           </div>
-      
-
-  
-      
+        </div>
+      </article>
     </section>
   </main>
 </div>
 
-<footer style="background: var(--primary-color); color: var(--light-text); padding: 1.5rem; text-align: center;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem; margin-bottom: 1.5rem;">
+<footer>
+  <div class="footer-container">
+    <div class="footer-sections">
       <div>
-        <h3 style="color: var(--secondary-color); margin-bottom: 0.5rem;">روابط سريعة</h3>
-        <ul style="list-style: none;">
-          <li><a href="#" style="color: var(--light-text); text-decoration: none;">الرئيسية</a></li>
-          <li><a href="#" style="color: var(--light-text); text-decoration: none;">المؤلفون</a></li>
-          <li><a href="#" style="color: var(--light-text); text-decoration: none;">عن المكتبة</a></li>
+        <h3>روابط سريعة</h3>
+        <ul>
+          <li><a href="#">الرئيسية</a></li>
+          <li><a href="#">المؤلفون</a></li>
+          <li><a href="#">عن المكتبة</a></li>
         </ul>
       </div>
       <div>
-        <h3 style="color: var(--secondary-color); margin-bottom: 0.5rem;">تواصل معنا</h3>
+        <h3>تواصل معنا</h3>
         <p>البريد: Alqudslibrary@gmail.com</p>
-        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 0.5rem;">
-          <a href="#" style="color: var(--secondary-color); font-size: 1.5rem;">📱</a>
-          <a href="#" style="color: var(--secondary-color); font-size: 1.5rem;">📧</a>
-          <a href="#" style="color: var(--secondary-color); font-size: 1.5rem;">📘</a>
+        <div class="social-links">
+          <a href="#" aria-label="واتساب">📱</a>
+          <a href="#" aria-label="البريد الإلكتروني">📧</a>
+          <a href="#" aria-label="فيسبوك">📘</a>
         </div>
       </div>
     </div>
-    <p style="border-top: 1px solid rgba(212, 175, 55, 0.3); padding-top: 1rem; margin-top: 1rem;">
+    <div class="copyright">
       © 2025 مكتبة القدس الإلكترونية • جميع الحقوق محفوظة
-    </p>
+    </div>
   </div>
 </footer>
 
 <script>
-  
   document.addEventListener('DOMContentLoaded', function() {
-   
-    document.querySelectorAll('nav ul li').forEach(item => {
-      if(item.querySelector('ul')) {
-        item.addEventListener('click', (e) => {
-          if(e.target === item || e.target.classList.contains('submenu-arrow')) {
-            item.classList.toggle('expanded');
-          }
-        });
-      }
-    });
-    
-
+    // إدارة القائمة الجانبية
     const menuToggleBtn = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav');
     
@@ -584,11 +648,24 @@
       document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
     });
     
+    // إدارة القوائم المتداخلة
+    document.querySelectorAll('nav ul li a').forEach(link => {
+      if(link.nextElementSibling && link.nextElementSibling.classList.contains('submenu-arrow')) {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const parentLi = link.parentElement;
+          const submenu = link.nextElementSibling.nextElementSibling;
+          
+          parentLi.classList.toggle('expanded');
+          submenu.classList.toggle('show');
+        });
+      }
+    });
     
+    // نظام البحث
     const searchInput = document.getElementById('search-input');
     const searchBtn = document.getElementById('search-btn');
     const booksSection = document.getElementById('books-section');
-    const noResultsDiv = document.getElementById('no-results');
     
     function performSearch() {
       const query = searchInput.value.trim().toLowerCase();
@@ -596,8 +673,8 @@
       
       booksSection.querySelectorAll('.book-card').forEach(card => {
         const title = card.querySelector('h2').textContent.toLowerCase();
-        const author = card.getAttribute('data-author')?.toLowerCase() || '';
-        const description = card.querySelector('p')?.textContent.toLowerCase() || '';
+        const author = card.getAttribute('data-author').toLowerCase();
+        const description = card.querySelector('p').textContent.toLowerCase();
         
         if(title.includes(query) || author.includes(query) || description.includes(query)) {
           card.style.display = '';
@@ -607,7 +684,9 @@
         }
       });
       
-      noResultsDiv.style.display = found ? 'none' : 'block';
+      if(!found) {
+        showAlert('لم يتم العثور على نتائج', 'error');
+      }
     }
     
     searchBtn.addEventListener('click', performSearch);
@@ -615,7 +694,7 @@
       if(e.key === 'Enter') performSearch();
     });
     
-    
+    // نظام التقييم
     document.querySelectorAll('.rating').forEach(ratingDiv => {
       const stars = ratingDiv.querySelectorAll('.star');
       const bookKey = ratingDiv.getAttribute('data-book');
@@ -630,19 +709,22 @@
         infoDiv.textContent = `تقييمك: ${savedRating} من 5`;
       }
       
-      stars.forEach((star, index) => {
-        star.addEventListener('click', () => {
-          const rating = index + 1;
+      // تفويض الأحداث للتقييم
+      ratingDiv.addEventListener('click', (e) => {
+        if(e.target.classList.contains('star')) {
+          const clickedStar = e.target;
+          const starsArray = Array.from(stars);
+          const rating = starsArray.indexOf(clickedStar) + 1;
+          
           localStorage.setItem('rating_' + bookKey, rating);
           
-          stars.forEach((s, i) => {
-            s.classList.toggle('selected', i <= index);
+          stars.forEach((star, index) => {
+            star.classList.toggle('selected', index < rating);
           });
           
           infoDiv.textContent = `تقييمك: ${rating} من 5`;
-          
-        
-        });
+          showAlert('شكراً لتقييمك الكتاب!', 'success');
+        }
       });
     });
     
@@ -658,24 +740,23 @@
           const commentDiv = document.createElement('div');
           commentDiv.className = 'comment';
           commentDiv.innerHTML = `
-            <div style="background: rgba(212, 175, 55, 0.1); padding: 0.8rem; border-radius: 6px; margin-bottom: 0.8rem;">
-              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                <strong>مستخدم</strong>
-                <small>الآن</small>
-              </div>
-              <p>${comment}</p>
+            <div class="comment-header">
+              <strong>مستخدم</strong>
+              <small>الآن</small>
             </div>
+            <p>${sanitizeHTML(comment)}</p>
           `;
           
           commentsList.appendChild(commentDiv);
           textarea.value = '';
-          
-         
+          showAlert('تم إضافة تعليقك بنجاح', 'success');
+        } else {
+          showAlert('الرجاء إدخال تعليق', 'error');
         }
       });
     });
     
-  
+    // الوضع الليلي
     const themeToggleBtn = document.getElementById('theme-toggle');
     
     function toggleDarkMode() {
@@ -686,7 +767,7 @@
       themeToggleBtn.textContent = isDark ? '☀️' : '🌙';
     }
     
-   
+    // تحميل الوضع من localStorage
     const savedTheme = localStorage.getItem('theme');
     if(savedTheme === 'dark') {
       document.body.classList.add('dark-mode');
@@ -695,18 +776,19 @@
     
     themeToggleBtn.addEventListener('click', toggleDarkMode);
     
-    
-    document.querySelectorAll('nav ul li[data-category]').forEach(item => {
-      item.addEventListener('click', function() {
+    // تصفية الكتب حسب التصنيف
+    document.querySelectorAll('nav a[data-category]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
         const category = this.getAttribute('data-category');
         
-       
-        document.querySelectorAll('nav ul li').forEach(li => {
+        // تحديث القائمة النشطة
+        document.querySelectorAll('nav li').forEach(li => {
           li.classList.remove('active-category');
         });
-        this.classList.add('active-category');
+        this.parentElement.classList.add('active-category');
         
-      
+        // تصفية الكتب
         booksSection.querySelectorAll('.book-card').forEach(card => {
           if(category === 'all' || card.getAttribute('data-category') === category) {
             card.style.display = '';
@@ -715,15 +797,75 @@
           }
         });
         
-        noResultsDiv.style.display = 'none';
-        
-       
+        // إغلاق القائمة على الأجهزة الصغيرة
         if(window.innerWidth <= 768) {
           nav.classList.remove('open');
           document.body.style.overflow = '';
         }
       });
     });
+    
+    // إضافة إلى المفضلة
+    document.querySelectorAll('.favorite').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const bookId = this.getAttribute('data-book');
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        
+        if(!favorites.includes(bookId)) {
+          favorites.push(bookId);
+          localStorage.setItem('favorites', JSON.stringify(favorites));
+          this.textContent = '❤️ محفوظ';
+          showAlert('تمت إضافة الكتاب إلى المفضلة', 'success');
+        } else {
+          favorites = favorites.filter(id => id !== bookId);
+          localStorage.setItem('favorites', JSON.stringify(favorites));
+          this.textContent = '❤️ حفظ';
+          showAlert('تمت إزالة الكتاب من المفضلة', 'success');
+        }
+      });
+    });
+    
+    // تحميل متدرج للصور
+    function lazyLoadImages() {
+      const lazyImages = document.querySelectorAll('img.lazy');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.getAttribute('data-src');
+            img.classList.add('loaded');
+            observer.unobserve(img);
+          }
+        });
+      });
+      
+      lazyImages.forEach(img => {
+        observer.observe(img);
+      });
+    }
+    
+    lazyLoadImages();
+    
+    // وظائف مساعدة
+    function showAlert(message, type) {
+      const alertsContainer = document.getElementById('alerts-container');
+      const alertDiv = document.createElement('div');
+      alertDiv.className = `alert alert-${type}`;
+      alertDiv.textContent = message;
+      
+      alertsContainer.appendChild(alertDiv);
+      
+      setTimeout(() => {
+        alertDiv.remove();
+      }, 3000);
+    }
+    
+    function sanitizeHTML(str) {
+      const temp = document.createElement('div');
+      temp.textContent = str;
+      return temp.innerHTML;
+    }
   });
 </script>
 </body>
