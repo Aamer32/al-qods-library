@@ -728,34 +728,67 @@
       });
     });
     
-    // نظام التعليقات
-    document.querySelectorAll('.comment-form').forEach(form => {
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const textarea = this.querySelector('textarea');
-        const comment = textarea.value.trim();
-        const commentsList = this.previousElementSibling;
-        
-        if(comment) {
-          const commentDiv = document.createElement('div');
-          commentDiv.className = 'comment';
-          commentDiv.innerHTML = `
-            <div class="comment-header">
-              <strong>مستخدم</strong>
-              <small>الآن</small>
-            </div>
-            <p>${sanitizeHTML(comment)}</p>
-          `;
-          
-          commentsList.appendChild(commentDiv);
-          textarea.value = '';
-          showAlert('تم إضافة تعليقك بنجاح', 'success');
-        } else {
-          showAlert('الرجاء إدخال تعليق', 'error');
-        }
-      });
-    });
+   // نظام التعليقات المحفوظة
+document.querySelectorAll('.comment-form').forEach(form => {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const textarea = this.querySelector('textarea');
+    const comment = textarea.value.trim();
+    const commentsList = this.previousElementSibling;
+    const bookId = this.closest('.book-card').getAttribute('data-book');
     
+    if(comment) {
+      // حفظ التعليق في localStorage
+      const comments = JSON.parse(localStorage.getItem(`comments_${bookId}`)) || [];
+      const newComment = {
+        id: Date.now(),
+        text: comment,
+        date: new Date().toLocaleString('ar-EG'),
+        user: "مستخدم"
+      };
+      
+      comments.push(newComment);
+      localStorage.setItem(`comments_${bookId}`, JSON.stringify(comments));
+      
+      // عرض التعليق
+      displayComment(newComment, commentsList);
+      textarea.value = '';
+      showAlert('تم إضافة تعليقك بنجاح', 'success');
+    } else {
+      showAlert('الرجاء إدخال تعليق', 'error');
+    }
+  });
+});
+
+// دالة لعرض التعليق
+function displayComment(comment, container) {
+  const commentDiv = document.createElement('div');
+  commentDiv.className = 'comment';
+  commentDiv.innerHTML = `
+    <div class="comment-header">
+      <strong>${comment.user}</strong>
+      <small>${comment.date}</small>
+    </div>
+    <p>${sanitizeHTML(comment.text)}</p>
+  `;
+  container.appendChild(commentDiv);
+}
+
+// تحميل التعليقات عند فتح الصفحة
+function loadComments() {
+  document.querySelectorAll('.book-card').forEach(card => {
+    const bookId = card.getAttribute('data-book');
+    const commentsList = card.querySelector('.comments-list');
+    const comments = JSON.parse(localStorage.getItem(`comments_${bookId}`)) || [];
+    
+    comments.forEach(comment => {
+      displayComment(comment, commentsList);
+    });
+  });
+}
+
+// استدعاء الدالة عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', loadComments);
     // الوضع الليلي
     const themeToggleBtn = document.getElementById('theme-toggle');
     
