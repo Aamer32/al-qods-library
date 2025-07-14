@@ -649,6 +649,17 @@
 <div class="main-wrapper">
   <div class="nav-overlay"></div>
   
+  <div class="site-title">مكتبة القدس الإلكترونية 📚</div>
+  
+  <div class="search-container">
+    <input type="text" id="search-input" placeholder="ابحث عن كتاب أو مؤلف..." dir="rtl" />
+    <button id="search-btn" aria-label="بحث">🔍</button>
+  </div>
+</header>
+
+<div class="main-wrapper">
+  <div class="nav-overlay"></div>
+  
   <nav class="closed">
     <ul>
       <li class="active-category"><a href="#">الرئيسية</a></li>
@@ -660,6 +671,7 @@
             <ul class="submenu">
               <li><a href="#" data-category="balagha">مملكة البلاغة (6)</a></li>
               <li><a href="#" data-category="Malhamat">ملحمة الطين و النار (5)</a></li>
+              <li><a href="#" data-category="fantasy">خيال علمي (12)</a></li>
             </ul>
           </li>
           <li>
@@ -667,16 +679,65 @@
             <ul class="submenu">
               <li><a href="#" data-category="hanan">حنان لا شين</a></li>
               <li><a href="#" data-category="al hamdan">أحمد آل الحمدان</a></li>
+              <li><a href="#" data-category="tawfiq">توفيق الحكيم</a></li>
             </ul>
           </li>
-          <li><a href="#" data-category="religion">دينية</a></li>
-          <li><a href="#" data-category="history">تاريخية</a></li>
+          <li><a href="#" data-category="religion">دينية (24)</a></li>
+          <li><a href="#" data-category="history">تاريخية (18)</a></li>
+          <li><a href="#" data-category="science">علمية (9)</a></li>
         </ul>
       </li>
-      <li><a href="#">📥 الأكثر تحميلاً</a></li>
+      <li><a href="#" id="favorites-link">📥 المفضلة (<span id="favorites-count">0</span>)</a></li>
+      <li><a href="#" data-category="new">🆕 الإضافات الجديدة</a></li>
       <li><a href="#">عن المكتبة</a></li>
+      <li><a href="#" id="login-btn">تسجيل الدخول</a></li>
     </ul>
   </nav>
+
+  <main class="container" tabindex="0">
+    <div id="alerts-container"></div>
+    
+    <!-- فلاتر البحث المتقدم -->
+    <div class="advanced-filters">
+      <div class="filter-group">
+        <label for="sort-by">ترتيب حسب:</label>
+        <select id="sort-by">
+          <option value="newest">الأحدث</option>
+          <option value="oldest">الأقدم</option>
+          <option value="popular">الأكثر شعبية</option>
+          <option value="rating">أعلى تقييم</option>
+        </select>
+      </div>
+      
+      <div class="filter-group">
+        <label for="filter-year">سنة النشر:</label>
+        <select id="filter-year">
+          <option value="all">الكل</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+        </select>
+      </div>
+      
+      <button id="reset-filters" class="btn-secondary">إعادة تعيين</button>
+    </div>
+    
+    <!-- إحصائيات المكتبة -->
+    <div class="library-stats">
+      <div class="stat-card">
+        <div class="stat-value" id="total-books">42</div>
+        <div class="stat-label">كتاب</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="total-authors">18</div>
+        <div class="stat-label">مؤلف</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="total-downloads">1,245</div>
+        <div class="stat-label">تحميل</div>
+      </div>
+    </div>
 
   <main class="container" tabindex="0">
     <div id="alerts-container"></div>
