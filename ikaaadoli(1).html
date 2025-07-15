@@ -408,6 +408,38 @@
 </div>
 
 <script>
+      document.querySelectorAll('.rating').forEach(ratingDiv => {
+      const stars = ratingDiv.querySelectorAll('.star');
+      const bookKey = ratingDiv.getAttribute('data-book');
+      const infoDiv = ratingDiv.querySelector('.rating-info');
+      
+      // Load rating from localStorage
+      const savedRating = localStorage.getItem('rating_' + bookKey);
+      if(savedRating) {
+        stars.forEach((star, index) => {
+          star.classList.toggle('selected', index < savedRating);
+        });
+        infoDiv.textContent = `تقييمك: ${savedRating} من 5`;
+      }
+      
+      // Rating event delegation
+      ratingDiv.addEventListener('click', (e) => {
+        if(e.target.classList.contains('star')) {
+          const clickedStar = e.target;
+          const starsArray = Array.from(stars);
+          const rating = starsArray.indexOf(clickedStar) + 1;
+          
+          localStorage.setItem('rating_' + bookKey, rating);
+          
+          stars.forEach((star, index) => {
+            star.classList.toggle('selected', index < rating);
+          });
+          
+          infoDiv.textContent = `تقييمك: ${rating} من 5`;
+          showAlert('شكراً لتقييمك الكتاب!', 'success');
+        }
+      });
+    });
   // وظائف المشاركة
   function shareOnFacebook() {
     const url = encodeURIComponent(window.location.href);
