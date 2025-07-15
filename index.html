@@ -30,6 +30,7 @@
       --dark-card-bg: #1e1e1e;
       --dark-text: #e0e0e0;
       --footer-gradient: linear-gradient(135deg, #1a5f1a, #134713, #0d2e0d);
+      --btn-secondary: #219650; /* لون hover لزر التحميل */
     }
 
     * {
@@ -49,7 +50,7 @@
       transition: background-color 0.3s, color 0.3s;
     }
 
-    /* تحسينات الهيدر */
+    /* Header Styles */
     header {
       background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
       color: var(--light-text);
@@ -141,7 +142,7 @@
       color: var(--secondary-color);
     }
     
-    /* تحسينات التنقل */
+    /* Navigation Styles */
     .main-wrapper {
       flex: 1;
       display: flex;
@@ -165,16 +166,6 @@
     
     nav.closed {
       transform: translateX(280px);
-    }
-    
-    @media (max-width: 768px) {
-      nav {
-        transform: translateX(280px);
-      }
-      
-      nav.open {
-        transform: translateX(0);
-      }
     }
     
     nav ul {
@@ -228,7 +219,7 @@
       transform: translateY(-50%) rotate(90deg);
     }
     
-    /* تحسينات المحتوى الرئيسي */
+    /* Main Content Styles */
     main.container {
       flex: 1;
       padding: 2rem;
@@ -354,7 +345,7 @@
       transform: scale(1.2);
     }
     
-    /* تحسينات قسم التعليقات */
+    /* Comments Section */
     .comments-section {
       margin-top: 1.5rem;
       padding: 1.5rem;
@@ -425,7 +416,7 @@
       background: var(--btn-primary-hover);
     }
     
-    /* الوضع الليلي */
+    /* Dark Mode */
     body.dark-mode {
       background-color: var(--dark-bg);
       color: var(--dark-text);
@@ -448,7 +439,7 @@
       background: rgba(42, 58, 36, 0.5);
     }
     
-    /* رسائل التنبيه */
+    /* Alerts */
     .alert {
       padding: 0.8rem;
       margin: 1rem 0;
@@ -467,60 +458,10 @@
       color: #721c24;
     }
     
-    /* التجاوب مع الشاشات الصغيرة */
-    @media (max-width: 768px) {
-      header {
-        padding: 0.8rem;
-      }
-      
-      .site-title {
-        font-size: 1.3rem;
-      }
-      
-      nav {
-        width: 280px;
-        transform: translateX(280px);
-      }
-      
-      nav.open {
-        transform: translateX(0);
-      }
-      
-      main.container {
-        padding: 1rem;
-        margin-right: 0;
-      }
-      
-      .book-list {
-        grid-template-columns: 1fr;
-      }
-      
-      .book-card img {
-        height: 300px;
-      }
-    }
-    
-    /* تحسينات للشاشات الكبيرة */
-    @media (min-width: 1200px) {
-      .book-list {
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      }
-    }
-    
-    /* تحميل متدرج للصور */
-    img.lazy {
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    
-    img.lazy.loaded {
-      opacity: 1;
-    }
-    
-    /* تحسينات الفوتر الجديدة */
+    /* Footer Styles */
     footer {
       background: var(--footer-gradient);
-      color: white;
+      color: rgb(45, 14, 116);
       padding: 2rem 1rem;
       position: relative;
       overflow: hidden;
@@ -610,7 +551,7 @@
       border-top: 1px solid rgba(212, 175, 55, 0.3);
     }
     
-    /* إضافة overlay للقائمة على الجوال */
+    /* Nav Overlay */
     .nav-overlay {
       position: fixed;
       top: 0;
@@ -628,10 +569,60 @@
       opacity: 1;
       visibility: visible;
     }
+    
+    /* Lazy Loading */
+    img.lazy {
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    img.lazy.loaded {
+      opacity: 1;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      header {
+        padding: 0.8rem;
+      }
+      
+      .site-title {
+        font-size: 1.3rem;
+      }
+      
+      nav {
+        width: 280px;
+        transform: translateX(280px);
+      }
+      
+      nav.open {
+        transform: translateX(0);
+      }
+      
+      main.container {
+        padding: 1rem;
+        margin-right: 0;
+      }
+      
+      .book-list {
+        grid-template-columns: 1fr;
+      }
+      
+      .book-card img {
+        height: 300px;
+      }
+    }
+    
+    @media (min-width: 1200px) {
+      .book-list {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      }
+    }
   </style>
 </head>
 <body>
 
+<!-- Header Section -->
 <header>
   <div class="header-controls">
     <button class="menu-toggle" aria-label="القائمة">☰</button>
@@ -646,9 +637,11 @@
   </div>
 </header>
 
+<!-- Main Wrapper -->
 <div class="main-wrapper">
   <div class="nav-overlay"></div>
   
+  <!-- Navigation -->
   <nav class="closed">
     <ul>
       <li class="active-category"><a href="#">الرئيسية</a></li>
@@ -680,11 +673,15 @@
       <li><a href="#" data-category="new">🆕 الإضافات الجديدة</a></li>
       <li><a href="#">عن المكتبة</a></li>
       <li><a href="#" id="login-btn">تسجيل الدخول</a></li>
-
+    </ul>
+  </nav>
+  
+  <!-- Main Content -->
   <main class="container" tabindex="0">
     <div id="alerts-container"></div>
     
     <section class="book-list" id="books-section">
+      <!-- Book Card 1 -->
       <article class="book-card" data-category="balagha" data-author="حنان لاشين" data-pages="316" data-year="2018">
         <img class="lazy" data-src="https://th.bing.com/th/id/OIP.yJxNH3GikPIxcAdQ85vskQHaKl?r=0" alt="غلاف كتاب إيكادولي" />
         <div class="book-details">
@@ -700,9 +697,8 @@
             <div class="rating-info" id="ikadoli-info"></div>
           </div>
           <div class="buttons">
-            <a href="إيكادولي.pdf" class="read" target="_blank">👁️ قراءة</a>
-            <a href="إيكادولي.pdf" class="download" download>📥 تحميل</a>
             <button class="favorite" data-book="ikadoli">❤️ حفظ</button>
+            <a href="ikaaadoli(1).html" class="btn-secondary" download =>للقراءة و التحميل</a>
           </div>
           
           <div class="comments-section">
@@ -716,6 +712,7 @@
         </div>
       </article>
       
+      <!-- Book Card 2 -->
       <article class="book-card" data-category="balagha" data-author="حنان لاشين" data-pages="352" data-year="2019">
         <img class="lazy" data-src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1736849771i/38261280.jpg" alt="غلاف كتاب أوبال" />
         <div class="book-details">
@@ -744,8 +741,11 @@
               <button type="submit">إرسال التعليق</button>
             </form>
           </div>
-          <article class="book-card" data-category="malhamat" data-author="احمد ال حمدان" data-pages="275" data-year="2021">
-            <article class="book-card" data-category="">
+        </div>
+      </article>
+      
+      <!-- Book Card 3 -->
+      <article class="book-card" data-category="malhamat" data-author="احمد ال حمدان" data-pages="275" data-year="2021">
         <img src="https://th.bing.com/th/id/OIP.VSyny-2NqjCXgFX7wO0iUQAAAA?r=0" alt="غلاف كتاب الجساسة" />
         <div class="book-details">
           <h2>📖 الجساسة</h2>
@@ -761,7 +761,7 @@
           <div class="buttons">
             <a href="الجساسة.pdf" class="read" target="_blank">👁️ قراءة</a>
             <a href="الجساسة.pdf" class="download" download>📥 تحميل</a>
-             <button class="favorite" data-book="ikadoli">❤️ حفظ</button>
+            <button class="favorite" data-book="ikadoli">❤️ حفظ</button>
           </div>
           <div class="comments-section">
             <h3>التعليقات</h3>
@@ -771,7 +771,31 @@
               <button type="submit">إرسال التعليق</button>
             </form>
           </div>
-          
+        </div>
+      </article>
+    </section>
+  </main>
+</div>
+
+<!-- Footer Section -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3>عن المكتبة</h3>
+      <p>مكتبة القدس الإلكترونية تهدف إلى نشر المعرفة والثقافة العربية من خلال توفير الكتب والروايات العربية للقراءة والتحميل المجاني.</p>
+    </div>
+    
+    <div class="footer-section">
+      <h3>روابط سريعة</h3>
+      <ul class="footer-links">
+        <li><a href="#" data-category="new">الإضافات الجديدة</a></li>
+        <li><a href="#" data-category="popular">الأكثر قراءة</a></li>
+        <li><a href="#" data-category="recommended">كتب مميزة</a></li>
+        <li><a href="#">سياسة الخصوصية</a></li>
+        <li><a href="#">شروط الاستخدام</a></li>
+      </ul>
+    </div>
+    
     <div class="footer-section">
       <h3>تواصل معنا</h3>
       <p><span style="margin-left: 5px;">📧</span> Alqudslibrary@gmail.com</p>
@@ -789,9 +813,10 @@
   </div>
 </footer>
 
+<!-- JavaScript -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // إدارة القائمة الجانبية - النسخة المحسنة
+    // Navigation Management
     const menuToggleBtn = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav');
     const navOverlay = document.querySelector('.nav-overlay');
@@ -804,10 +829,9 @@
     }
     
     menuToggleBtn.addEventListener('click', toggleNav);
-    
     navOverlay.addEventListener('click', toggleNav);
     
-    // إغلاق القائمة عند النقر على رابط
+    // Close menu when clicking on a link (mobile)
     document.querySelectorAll('nav a').forEach(link => {
       link.addEventListener('click', () => {
         if(window.innerWidth <= 768) {
@@ -816,7 +840,7 @@
       });
     });
     
-    // إدارة القوائم المتداخلة
+    // Nested Menu Management
     document.querySelectorAll('nav ul li a').forEach(link => {
       if(link.nextElementSibling && link.nextElementSibling.classList.contains('submenu-arrow')) {
         link.addEventListener('click', (e) => {
@@ -830,7 +854,7 @@
       }
     });
     
-    // نظام البحث
+    // Search Functionality
     const searchInput = document.getElementById('search-input');
     const searchBtn = document.getElementById('search-btn');
     const booksSection = document.getElementById('books-section');
@@ -842,7 +866,7 @@
       booksSection.querySelectorAll('.book-card').forEach(card => {
         const title = card.querySelector('h2').textContent.toLowerCase();
         const author = card.getAttribute('data-author').toLowerCase();
-        const description = card.querySelector('p').textContent.toLowerCase();
+        const description = card.querySelector('p')?.textContent.toLowerCase() || '';
         
         if(title.includes(query) || author.includes(query) || description.includes(query)) {
           card.style.display = '';
@@ -862,13 +886,13 @@
       if(e.key === 'Enter') performSearch();
     });
     
-    // نظام التقييم
+    // Rating System
     document.querySelectorAll('.rating').forEach(ratingDiv => {
       const stars = ratingDiv.querySelectorAll('.star');
       const bookKey = ratingDiv.getAttribute('data-book');
       const infoDiv = ratingDiv.querySelector('.rating-info');
       
-      // تحميل التقييم من localStorage
+      // Load rating from localStorage
       const savedRating = localStorage.getItem('rating_' + bookKey);
       if(savedRating) {
         stars.forEach((star, index) => {
@@ -877,7 +901,7 @@
         infoDiv.textContent = `تقييمك: ${savedRating} من 5`;
       }
       
-      // تفويض الأحداث للتقييم
+      // Rating event delegation
       ratingDiv.addEventListener('click', (e) => {
         if(e.target.classList.contains('star')) {
           const clickedStar = e.target;
@@ -896,7 +920,7 @@
       });
     });
     
-    // نظام التعليقات المحفوظة
+    // Comments System
     document.querySelectorAll('.comment-form').forEach(form => {
       form.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -926,7 +950,7 @@
       });
     });
 
-    // دالة لعرض التعليق
+    // Display Comment Function
     function displayComment(comment, container) {
       const commentDiv = document.createElement('div');
       commentDiv.className = 'comment';
@@ -940,7 +964,7 @@
       container.appendChild(commentDiv);
     }
 
-    // تحميل التعليقات عند فتح الصفحة
+    // Load Comments on Page Load
     function loadComments() {
       document.querySelectorAll('.book-card').forEach(card => {
         const bookId = card.getAttribute('data-book');
@@ -953,10 +977,10 @@
       });
     }
 
-    // استدعاء الدالة عند تحميل الصفحة
+    // Initialize Comments
     loadComments();
     
-    // الوضع الليلي
+    // Dark Mode Toggle
     const themeToggleBtn = document.getElementById('theme-toggle');
     
     function toggleDarkMode() {
@@ -967,7 +991,7 @@
       themeToggleBtn.textContent = isDark ? '☀️' : '🌙';
     }
     
-    // تحميل الوضع من localStorage
+    // Load Theme Preference
     const savedTheme = localStorage.getItem('theme');
     if(savedTheme === 'dark') {
       document.body.classList.add('dark-mode');
@@ -976,95 +1000,141 @@
     
     themeToggleBtn.addEventListener('click', toggleDarkMode);
     
-    // تصفية الكتب حسب التصنيف
+    // Category Filtering
     document.querySelectorAll('nav a[data-category], .footer-links a[data-category]').forEach(link => {
       link.addEventListener('click', function(e) {
         e.preventDefault();
         const category = this.getAttribute('data-category');
         
-        // تحديث القائمة النشطة
+        // Update active category
         document.querySelectorAll('nav li').forEach(li => {
           li.classList.remove('active-category');
         });
         
-        // تصفية الكتب
+        // Filter books
         booksSection.querySelectorAll('.book-card').forEach(card => {
           if(category === 'all' || card.getAttribute('data-category') === category) {
             card.style.display = '';
           } else {
             card.style.display = 'none';
-          }
-        });
-        
-        // إغلاق القائمة على الأجهزة الصغيرة
-        if(window.innerWidth <= 768) {
-          toggleNav();
-        }
-      });
-    });
-    
-    // إضافة إلى المفضلة
-    document.querySelectorAll('.favorite').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const bookId = this.getAttribute('data-book');
-        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        
-        if(!favorites.includes(bookId)) {
-          favorites.push(bookId);
-          localStorage.setItem('favorites', JSON.stringify(favorites));
-          this.textContent = '❤️ محفوظ';
-          showAlert('تمت إضافة الكتاب إلى المفضلة', 'success');
-        } else {
-          favorites = favorites.filter(id => id !== bookId);
-          localStorage.setItem('favorites', JSON.stringify(favorites));
-          this.textContent = '❤️ حفظ';
-          showAlert('تمت إزالة الكتاب من المفضلة', 'success');
-        }
-      });
-    });
-    
-    // تحميل متدرج للصور
-    function lazyLoadImages() {
-      const lazyImages = document.querySelectorAll('img.lazy');
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting) {
-            const img = entry.target;
-            img.src = img.getAttribute('data-src');
-            img.classList.add('loaded');
-            observer.unobserve(img);
-          }
-        });
-      });
-      
-      lazyImages.forEach(img => {
-        observer.observe(img);
-      });
-    }
-    
-    lazyLoadImages();
-    
-    // وظائف مساعدة
-    function showAlert(message, type) {
-      const alertsContainer = document.getElementById('alerts-container');
-      const alertDiv = document.createElement('div');
-      alertDiv.className = `alert alert-${type}`;
-      alertDiv.textContent = message;
-      
-      alertsContainer.appendChild(alertDiv);
-      
-      setTimeout(() => {
-        alertDiv.remove();
-      }, 3000);
-    }
-    
-    function sanitizeHTML(str) {
-      const temp = document.createElement('div');
-      temp.textContent = str;
-      return temp.innerHTML;
-    }
+}
+});
+
+text
+    // Show alert for filtered results
+    showAlert(`عرض الكتب في فئة: ${this.textContent}`, 'success');
   });
+});
+
+// Favorites System
+const favoritesLink = document.getElementById('favorites-link');
+const favoritesCount = document.getElementById('favorites-count');
+
+// Load favorites from localStorage
+function loadFavorites() {
+  const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+  favoritesCount.textContent = favorites.length;
+  return favorites;
+}
+
+// Update favorites count
+let favorites = loadFavorites();
+
+// Toggle favorite status
+document.querySelectorAll('.favorite').forEach(btn => {
+  const bookId = btn.getAttribute('data-book');
+  
+  // Check if book is already favorited
+  if (favorites.includes(bookId)) {
+    btn.textContent = '❤️ محفوظ';
+    btn.classList.add('active');
+  }
+
+  btn.addEventListener('click', function() {
+    const index = favorites.indexOf(bookId);
+    
+    if (index === -1) {
+      // Add to favorites
+      favorites.push(bookId);
+      btn.textContent = '❤️ محفوظ';
+      showAlert('تمت إضافة الكتاب إلى المفضلة', 'success');
+    } else {
+      // Remove from favorites
+      favorites.splice(index, 1);
+      btn.textContent = '❤️ حفظ';
+      showAlert('تمت إزالة الكتاب من المفضلة', 'success');
+    }
+    
+    // Update localStorage and count
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+    favoritesCount.textContent = favorites.length;
+  });
+});
+
+// Show favorites when clicking favorites link
+favoritesLink.addEventListener('click', function(e) {
+  e.preventDefault();
+  
+  booksSection.querySelectorAll('.book-card').forEach(card => {
+    const bookId = card.getAttribute('data-book');
+    card.style.display = favorites.includes(bookId) ? '' : 'none';
+  });
+  
+  showAlert('عرض الكتب المفضلة', 'success');
+});
+
+// Lazy Loading Images
+function lazyLoadImages() {
+  const lazyImages = document.querySelectorAll('img.lazy');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.src = img.getAttribute('data-src');
+        img.classList.add('loaded');
+        observer.unobserve(img);
+      }
+    });
+  });
+  
+  lazyImages.forEach(img => {
+    observer.observe(img);
+  });
+}
+
+// Initialize lazy loading
+lazyLoadImages();
+
+// Alert System
+function showAlert(message, type) {
+  const alertsContainer = document.getElementById('alerts-container');
+  const alertDiv = document.createElement('div');
+  alertDiv.className = `alert alert-${type}`;
+  alertDiv.textContent = message;
+  
+  alertsContainer.appendChild(alertDiv);
+  
+  // Remove alert after 5 seconds
+  setTimeout(() => {
+    alertDiv.remove();
+  }, 5000);
+}
+
+// HTML Sanitization for comments
+function sanitizeHTML(str) {
+  const temp = document.createElement('div');
+  temp.textContent = str;
+  return temp.innerHTML;
+}
+
+// Login Button
+const loginBtn = document.getElementById('login-btn');
+loginBtn.addEventListener('click', function(e) {
+  e.preventDefault();
+  showAlert('سيتم توفير نظام تسجيل الدخول في الإصدارات القادمة', 'info');
+});
+});
 </script>
-</body>
-</html>
+
+</body> </html>
