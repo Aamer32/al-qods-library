@@ -244,28 +244,23 @@
       flex-direction: column;
     }
     
-    .book-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    }
-    
-    .book-card img {
-      width: 100%;
-      height: 380px;
-      object-fit: cover;
-      border-bottom: 3px solid var(--secondary-color);
-    }
-    
-    .book-details {
-      padding: 1.5rem;
-      flex: 1;
-    }
-    
-    .book-details h2 {
-      color: var(--primary-color);
-      margin-bottom: 0.5rem;
-      font-size: 1.3rem;
-    }
+.book-card img {
+  width: 100%;
+  max-height: 300px; /* تخفيض ارتفاع الصورة */
+  object-fit: cover;
+  border-bottom: 3px solid var(--secondary-color);
+}
+
+.book-details p {
+  max-height: 4.5em; /* تقريبًا 3 أسطر */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* لتحديد 3 أسطر */
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
     
     .book-meta {
       display: flex;
