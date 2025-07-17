@@ -23,14 +23,13 @@
       --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       --btn-primary: #1a5f1a;
       --btn-primary-hover: #134713;
-      --btn-secondary: #d4af37;
-      --btn-secondary-hover: #c19b2e;
+      --btn-secondary: #219650;
+      --btn-secondary-hover: #1a7a3e;
       --dark-primary: #2a3a24;
       --dark-secondary: #8a6d3b;
       --dark-card-bg: #1e1e1e;
       --dark-text: #e0e0e0;
       --footer-gradient: linear-gradient(135deg, #1a5f1a, #134713, #0d2e0d);
-      --btn-secondary: #219650; /* لون hover لزر التحميل */
     }
 
     * {
@@ -161,11 +160,16 @@
       right: 0;
       bottom: 0;
       z-index: 999;
-      transform: translateX(0);
     }
     
-    nav.closed {
-      transform: translateX(280px);
+    @media (max-width: 768px) {
+      nav {
+        transform: translateX(280px);
+      }
+      
+      nav.open {
+        transform: translateX(0);
+      }
     }
     
     nav ul {
@@ -225,7 +229,18 @@
       padding: 2rem;
       background: var(--light-bg);
       margin-right: 280px;
-      transition: margin 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+    }
+    
+    @media (max-width: 768px) {
+      main.container {
+        margin-right: 0;
+        padding: 1rem;
+      }
+      
+      .menu-toggle {
+        display: block;
+      }
     }
     
     .book-list {
@@ -244,23 +259,47 @@
       flex-direction: column;
     }
     
-.book-card img {
-  width: 100%;
-  max-height: 300px; /* تخفيض ارتفاع الصورة */
-  object-fit: cover;
-  border-bottom: 3px solid var(--secondary-color);
-}
-
-.book-details p {
-  max-height: 4.5em; /* تقريبًا 3 أسطر */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3; /* لتحديد 3 أسطر */
-  -webkit-box-orient: vertical;
-  white-space: normal;
-}
-
+    .book-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .book-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: contain;
+      object-position: center;
+      background-color: #f5f5f5;
+      border-bottom: 3px solid var(--secondary-color);
+    }
+    
+    body.dark-mode .book-card img {
+      background-color: #2a2a2a;
+    }
+    
+    .book-details {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .book-details h2 {
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+    
+    .book-details p {
+      margin: 0.5rem 0;
+      color: var(--text-color);
+      max-height: 4.5em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      white-space: normal;
+    }
     
     .book-meta {
       display: flex;
@@ -280,7 +319,7 @@
     .buttons {
       display: flex;
       gap: 0.8rem;
-      margin-top: 1.5rem;
+      margin-top: auto;
     }
     
     .buttons a, .buttons button {
@@ -300,17 +339,19 @@
       background: var(--btn-primary);
       color: white;
     }
-        .btn-secondary {
-        background: #25d366;
-        color:black;
+    
+    .btn-secondary {
+      background: var(--btn-secondary);
+      color: white;
     }
+    
     .buttons .read:hover {
       background: var(--btn-primary-hover);
     }
     
     .buttons .download {
       background: var(--btn-secondary);
-      color: var(--primary-color);
+      color: white;
     }
     
     .buttons .download:hover {
@@ -459,7 +500,7 @@
     /* Footer Styles */
     footer {
       background: var(--footer-gradient);
-      color: rgb(45, 14, 116);
+      color: var(--light-text);
       padding: 2rem 1rem;
       position: relative;
       overflow: hidden;
@@ -568,16 +609,6 @@
       visibility: visible;
     }
     
-    /* Lazy Loading */
-    img.lazy {
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    
-    img.lazy.loaded {
-      opacity: 1;
-    }
-    
     /* Responsive Styles */
     @media (max-width: 768px) {
       header {
@@ -586,28 +617,6 @@
       
       .site-title {
         font-size: 1.3rem;
-      }
-      
-      nav {
-        width: 280px;
-        transform: translateX(280px);
-      }
-      
-      nav.open {
-        transform: translateX(0);
-      }
-      
-      main.container {
-        padding: 1rem;
-        margin-right: 0;
-      }
-      
-      .book-list {
-        grid-template-columns: 1fr;
-      }
-      
-      .book-card img {
-        height: 300px;
       }
     }
     
@@ -640,7 +649,7 @@
   <div class="nav-overlay"></div>
   
   <!-- Navigation -->
-  <nav class="closed">
+  <nav>
     <ul>
       <li class="active-category"><a href="#">الرئيسية</a></li>
       <li>
@@ -696,7 +705,7 @@
           </div>
           <div class="buttons">
             <button class="favorite" data-book="ikadoli">❤️ حفظ</button>
-            <a href="ikaaadoli(1).html" class="btn-secondary"  =>للقراءة و التحميل</a>
+            <a href="ikaaadoli(1).html" class="btn-secondary">للقراءة و التحميل</a>
           </div>
           
           <div class="comments-section">
@@ -726,7 +735,7 @@
           </div>
           <div class="buttons">
             <button class="favorite" data-book="opal">❤️ حفظ</button>
-            <a href="opal(2).html" class="btn-secondary"  =>للقراءة و التحميل</a>
+            <a href="opal(2).html" class="btn-secondary">للقراءة و التحميل</a>
           </div>
           
           <div class="comments-section">
@@ -740,9 +749,8 @@
         </div>
       </article>
       
-
       <article class="book-card" data-category="malhamat" data-author="احمد ال حمدان" data-pages="275" data-year="2021">
-        <img src="https://th.bing.com/th/id/OIP.VSyny-2NqjCXgFX7wO0iUQAAAA?r=0" alt="غلاف كتاب الجساسة" />
+        <img class="lazy" data-src="https://th.bing.com/th/id/OIP.VSyny-2NqjCXgFX7wO0iUQAAAA?r=0" alt="غلاف كتاب الجساسة" />
         <div class="book-details">
           <h2>📖 الجساسة</h2>
           <div class="book-meta">
@@ -750,13 +758,43 @@
             <span>📅 2021</span>
             <span>📄 275 صفحة</span>
           </div>
+          <p>رواية ملحمية تحكي قصة الصراع بين الخير والشر</p>
           <div class="rating" data-book="jasasa">
             <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
             <div class="rating-info" id="jasasa-info"></div>
           </div>
           <div class="buttons">
             <button class="favorite" data-book="al jassasa">❤️ حفظ</button>
-             <a href="aljassasa(1).html" class="btn-secondary"  =>للقراءة و التحميل</a>
+            <a href="aljassasa(1).html" class="btn-secondary">للقراءة و التحميل</a>
+          </div>
+          <div class="comments-section">
+            <h3>التعليقات</h3>
+            <div class="comments-list"></div>
+            <form class="comment-form">
+              <textarea placeholder="أضف تعليقك..." required></textarea>
+              <button type="submit">إرسال التعليق</button>
+            </form>
+          </div>
+        </div>
+      </article>
+      
+      <article class="book-card" data-category="malhamat" data-author="احمد ال حمدان" data-pages="323" data-year="2022">
+        <img class="lazy" data-src="https://m.media-amazon.com/images/I/71q%2B23vD-JL._UF1000%2C1000_QL80_.jpg" alt="غلاف كتاب جومانا" />
+        <div class="book-details">
+          <h2>📖 جومانا</h2>
+          <div class="book-meta">
+            <span>📖 احمد ال الحمدان</span>
+            <span>📅 2022</span>
+            <span>📄 323 صفحة</span>
+          </div>
+          <p>استكمال لملحمة الطين والنار، رحلة جديدة في عالم الأساطير</p>
+          <div class="rating" data-book="jomana">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            <div class="rating-info" id="jomana-info"></div>
+          </div>
+          <div class="buttons">
+            <button class="favorite" data-book="jomana">❤️ حفظ</button>
+            <a href="jomana(1).html" class="btn-secondary">للقراءة و التحميل</a>
           </div>
           <div class="comments-section">
             <h3>التعليقات</h3>
@@ -771,31 +809,6 @@
     </section>
   </main>
 </div>
-        <article class="book-card" data-category="malhamat" data-author="احمد ال حمدان" data-pages="323" data-year="2022">
-        <img src="https://m.media-amazon.com/images/I/71q%2B23vD-JL._UF1000%2C1000_QL80_.jpg" alt="غلاف كتاب جومانا" />
-        <div class="book-details">
-          <h2>📖 جومانا</h2>
-          <div class="book-meta">
-            <span>📖 احمد ال الحمدان</span>
-            <span>📅 2022</span>
-            <span>📄 323 صفحة</span>
-          </div>
-          <div class="rating" data-book="jasasa">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-            <div class="rating-info" id="jomana-info"></div>
-          </div>
-          <div class="buttons">
-            <button class="favorite" data-book="jomana">❤️ حفظ</button>
-             <a href="jomana(1).html" class="btn-secondary"  =>للقراءة و التحميل</a>
-          </div>
-          <div class="comments-section">
-            <h3>التعليقات</h3>
-            <div class="comments-list"></div>
-            <form class="comment-form">
-              <textarea placeholder="أضف تعليقك..." required></textarea>
-              <button type="submit">إرسال التعليق</button>
-            </form>
-          </div>
 
 <!-- Footer Section -->
 <footer>
@@ -835,318 +848,237 @@
 
 <!-- JavaScript -->
 <script>
-     const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('nav');
+  // الكود المعدل للقائمة
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('nav');
+  const navOverlay = document.querySelector('.nav-overlay');
 
-    menuToggle.addEventListener('click', () => {
+  function toggleNav() {
+    if (window.innerWidth <= 768) {
       nav.classList.toggle('open');
-      nav.classList.toggle('closed');
-    });
-
-    // إغلاق القائمة عند النقر خارجها على الشاشات الصغيرة
-    document.addEventListener('click', (e) => {
-      if (!nav.contains(e.target) && !menuToggle.contains(e.target) && nav.classList.contains('open')) {
-        nav.classList.remove('open');
-        nav.classList.add('closed');
-      }
-    });
-
-    
-    // Nested Menu Management
-    document.querySelectorAll('nav ul li a').forEach(link => {
-      if(link.nextElementSibling && link.nextElementSibling.classList.contains('submenu-arrow')) {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const parentLi = link.parentElement;
-          const submenu = link.nextElementSibling.nextElementSibling;
-          
-          parentLi.classList.toggle('expanded');
-          submenu.classList.toggle('show');
-        });
-      }
-    });
-    
-    // Search Functionality
-    const searchInput = document.getElementById('search-input');
-    const searchBtn = document.getElementById('search-btn');
-    const booksSection = document.getElementById('books-section');
-    
-    function performSearch() {
-      const query = searchInput.value.trim().toLowerCase();
-      let found = false;
-      
-      booksSection.querySelectorAll('.book-card').forEach(card => {
-        const title = card.querySelector('h2').textContent.toLowerCase();
-        const author = card.getAttribute('data-author').toLowerCase();
-        const description = card.querySelector('p')?.textContent.toLowerCase() || '';
-        
-        if(title.includes(query) || author.includes(query) || description.includes(query)) {
-          card.style.display = '';
-          found = true;
-        } else {
-          card.style.display = 'none';
-        }
-      });
-      
-      if(!found) {
-        showAlert('لم يتم العثور على نتائج', 'error');
-      }
+      navOverlay.classList.toggle('active');
     }
-    
-    searchBtn.addEventListener('click', performSearch);
-    searchInput.addEventListener('keypress', (e) => {
-      if(e.key === 'Enter') performSearch();
-    });
-    
-    // Rating System
-    document.querySelectorAll('.rating').forEach(ratingDiv => {
-      const stars = ratingDiv.querySelectorAll('.star');
-      const bookKey = ratingDiv.getAttribute('data-book');
-      const infoDiv = ratingDiv.querySelector('.rating-info');
-      
-      // Load rating from localStorage
-      const savedRating = localStorage.getItem('rating_' + bookKey);
-      if(savedRating) {
-        stars.forEach((star, index) => {
-          star.classList.toggle('selected', index < savedRating);
-        });
-        infoDiv.textContent = `تقييمك: ${savedRating} من 5`;
-      }
-      
-      // Rating event delegation
-      ratingDiv.addEventListener('click', (e) => {
-        if(e.target.classList.contains('star')) {
-          const clickedStar = e.target;
-          const starsArray = Array.from(stars);
-          const rating = starsArray.indexOf(clickedStar) + 1;
-          
-          localStorage.setItem('rating_' + bookKey, rating);
-          
-          stars.forEach((star, index) => {
-            star.classList.toggle('selected', index < rating);
-          });
-          
-          infoDiv.textContent = `تقييمك: ${rating} من 5`;
-          showAlert('شكراً لتقييمك الكتاب!', 'success');
-        }
-      });
-    });
-    
-    // Comments System
-    document.querySelectorAll('.comment-form').forEach(form => {
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const textarea = this.querySelector('textarea');
-        const comment = textarea.value.trim();
-        const commentsList = this.previousElementSibling;
-        const bookId = this.closest('.book-card').getAttribute('data-book');
-        
-        if(comment) {
-          const comments = JSON.parse(localStorage.getItem(`comments_${bookId}`)) || [];
-          const newComment = {
-            id: Date.now(),
-            text: comment,
-            date: new Date().toLocaleString('ar-EG'),
-            user: "مستخدم"
-          };
-          
-          comments.push(newComment);
-          localStorage.setItem(`comments_${bookId}`, JSON.stringify(comments));
-          
-          displayComment(newComment, commentsList);
-          textarea.value = '';
-          showAlert('تم إضافة تعليقك بنجاح', 'success');
-        } else {
-          showAlert('الرجاء إدخال تعليق', 'error');
-        }
-      });
-    });
-
-    // Display Comment Function
-    function displayComment(comment, container) {
-      const commentDiv = document.createElement('div');
-      commentDiv.className = 'comment';
-      commentDiv.innerHTML = `
-        <div class="comment-header">
-          <strong>${comment.user}</strong>
-          <small>${comment.date}</small>
-        </div>
-        <p>${sanitizeHTML(comment.text)}</p>
-      `;
-      container.appendChild(commentDiv);
-    }
-
-    // Load Comments on Page Load
-    function loadComments() {
-      document.querySelectorAll('.book-card').forEach(card => {
-        const bookId = card.getAttribute('data-book');
-        const commentsList = card.querySelector('.comments-list');
-        const comments = JSON.parse(localStorage.getItem(`comments_${bookId}`)) || [];
-        
-        comments.forEach(comment => {
-          displayComment(comment, commentsList);
-        });
-      });
-    }
-
-    // Initialize Comments
-    loadComments();
-    
-    // Dark Mode Toggle
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
-      const isDark = document.body.classList.contains('dark-mode');
-      
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      themeToggleBtn.textContent = isDark ? '☀️' : '🌙';
-    }
-    
-    // Load Theme Preference
-    const savedTheme = localStorage.getItem('theme');
-    if(savedTheme === 'dark') {
-      document.body.classList.add('dark-mode');
-      themeToggleBtn.textContent = '☀️';
-    }
-    
-    themeToggleBtn.addEventListener('click', toggleDarkMode);
-    
-    // Category Filtering
-    document.querySelectorAll('nav a[data-category], .footer-links a[data-category]').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const category = this.getAttribute('data-category');
-        
-        // Update active category
-        document.querySelectorAll('nav li').forEach(li => {
-          li.classList.remove('active-category');
-        });
-        
-        // Filter books
-        booksSection.querySelectorAll('.book-card').forEach(card => {
-          if(category === 'all' || card.getAttribute('data-category') === category) {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-}
-});
-
-text
-    // Show alert for filtered results
-    showAlert(`عرض الكتب في فئة: ${this.textContent}`, 'success');
-  });
-});
-
-// Favorites System
-const favoritesLink = document.getElementById('favorites-link');
-const favoritesCount = document.getElementById('favorites-count');
-
-// Load favorites from localStorage
-function loadFavorites() {
-  const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-  favoritesCount.textContent = favorites.length;
-  return favorites;
-}
-
-// Update favorites count
-let favorites = loadFavorites();
-
-// Toggle favorite status
-document.querySelectorAll('.favorite').forEach(btn => {
-  const bookId = btn.getAttribute('data-book');
-  
-  // Check if book is already favorited
-  if (favorites.includes(bookId)) {
-    btn.textContent = '❤️ محفوظ';
-    btn.classList.add('active');
   }
 
-  btn.addEventListener('click', function() {
-    const index = favorites.indexOf(bookId);
+  menuToggle.addEventListener('click', toggleNav);
+  navOverlay.addEventListener('click', toggleNav);
+
+  // تعديل القائمة عند تغيير حجم الشاشة
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+      nav.classList.remove('open');
+      navOverlay.classList.remove('active');
+    }
+  });
+
+  // إظهار القائمة تلقائياً عند التحميل للشاشات الكبيرة
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.innerWidth > 768) {
+      nav.style.transform = 'translateX(0)';
+    }
+  });
+
+  // Nested Menu Management
+  document.querySelectorAll('nav ul li a').forEach(link => {
+    if(link.nextElementSibling && link.nextElementSibling.classList.contains('submenu-arrow')) {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const parentLi = link.parentElement;
+        const submenu = link.nextElementSibling.nextElementSibling;
+        
+        parentLi.classList.toggle('expanded');
+        submenu.classList.toggle('show');
+      });
+    }
+  });
+  
+  // Dark Mode Toggle
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    const isDark = document.body.classList.contains('dark-mode');
     
-    if (index === -1) {
-      // Add to favorites
-      favorites.push(bookId);
-      btn.textContent = '❤️ محفوظ';
-      showAlert('تمت إضافة الكتاب إلى المفضلة', 'success');
-    } else {
-      // Remove from favorites
-      favorites.splice(index, 1);
-      btn.textContent = '❤️ حفظ';
-      showAlert('تمت إزالة الكتاب من المفضلة', 'success');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    themeToggleBtn.textContent = isDark ? '☀️' : '🌙';
+  }
+  
+  // Load Theme Preference
+  const savedTheme = localStorage.getItem('theme');
+  if(savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    themeToggleBtn.textContent = '☀️';
+  }
+  
+  themeToggleBtn.addEventListener('click', toggleDarkMode);
+  
+  // Lazy Loading Images
+  function lazyLoadImages() {
+    const lazyImages = document.querySelectorAll('img.lazy');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.getAttribute('data-src');
+          img.classList.add('loaded');
+          observer.unobserve(img);
+        }
+      });
+    });
+    
+    lazyImages.forEach(img => {
+      observer.observe(img);
+    });
+  }
+  
+  // Initialize lazy loading
+  lazyLoadImages();
+
+  // Search Functionality
+  const searchInput = document.getElementById('search-input');
+  const searchBtn = document.getElementById('search-btn');
+  const booksSection = document.getElementById('books-section');
+  
+  function performSearch() {
+    const query = searchInput.value.trim().toLowerCase();
+    let found = false;
+    
+    booksSection.querySelectorAll('.book-card').forEach(card => {
+      const title = card.querySelector('h2').textContent.toLowerCase();
+      const author = card.getAttribute('data-author').toLowerCase();
+      const description = card.querySelector('p')?.textContent.toLowerCase() || '';
+      
+      if(title.includes(query) || author.includes(query) || description.includes(query)) {
+        card.style.display = '';
+        found = true;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    
+    if(!found) {
+      showAlert('لم يتم العثور على نتائج', 'error');
+    }
+  }
+  
+  searchBtn.addEventListener('click', performSearch);
+  searchInput.addEventListener('keypress', (e) => {
+    if(e.key === 'Enter') performSearch();
+  });
+
+  // Rating System
+  document.querySelectorAll('.rating').forEach(ratingDiv => {
+    const stars = ratingDiv.querySelectorAll('.star');
+    const bookKey = ratingDiv.getAttribute('data-book');
+    const infoDiv = ratingDiv.querySelector('.rating-info');
+    
+    // Load rating from localStorage
+    const savedRating = localStorage.getItem('rating_' + bookKey);
+    if(savedRating) {
+      stars.forEach((star, index) => {
+        star.classList.toggle('selected', index < savedRating);
+      });
+      infoDiv.textContent = `تقييمك: ${savedRating} من 5`;
     }
     
-    // Update localStorage and count
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-    favoritesCount.textContent = favorites.length;
-  });
-});
-
-// Show favorites when clicking favorites link
-favoritesLink.addEventListener('click', function(e) {
-  e.preventDefault();
-  
-  booksSection.querySelectorAll('.book-card').forEach(card => {
-    const bookId = card.getAttribute('data-book');
-    card.style.display = favorites.includes(bookId) ? '' : 'none';
-  });
-  
-  showAlert('عرض الكتب المفضلة', 'success');
-});
-
-// Lazy Loading Images
-function lazyLoadImages() {
-  const lazyImages = document.querySelectorAll('img.lazy');
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        img.src = img.getAttribute('data-src');
-        img.classList.add('loaded');
-        observer.unobserve(img);
+    // Rating event delegation
+    ratingDiv.addEventListener('click', (e) => {
+      if(e.target.classList.contains('star')) {
+        const clickedStar = e.target;
+        const starsArray = Array.from(stars);
+        const rating = starsArray.indexOf(clickedStar) + 1;
+        
+        localStorage.setItem('rating_' + bookKey, rating);
+        
+        stars.forEach((star, index) => {
+          star.classList.toggle('selected', index < rating);
+        });
+        
+        infoDiv.textContent = `تقييمك: ${rating} من 5`;
+        showAlert('شكراً لتقييمك الكتاب!', 'success');
       }
     });
   });
+
+  // Favorites System
+  const favoritesLink = document.getElementById('favorites-link');
+  const favoritesCount = document.getElementById('favorites-count');
   
-  lazyImages.forEach(img => {
-    observer.observe(img);
+  // Load favorites from localStorage
+  function loadFavorites() {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    favoritesCount.textContent = favorites.length;
+    return favorites;
+  }
+  
+  let favorites = loadFavorites();
+  
+  // Toggle favorite status
+  document.querySelectorAll('.favorite').forEach(btn => {
+    const bookId = btn.getAttribute('data-book');
+    
+    // Check if book is already favorited
+    if (favorites.includes(bookId)) {
+      btn.textContent = '❤️ محفوظ';
+      btn.classList.add('active');
+    }
+  
+    btn.addEventListener('click', function() {
+      const index = favorites.indexOf(bookId);
+      
+      if (index === -1) {
+        // Add to favorites
+        favorites.push(bookId);
+        btn.textContent = '❤️ محفوظ';
+        showAlert('تمت إضافة الكتاب إلى المفضلة', 'success');
+      } else {
+        // Remove from favorites
+        favorites.splice(index, 1);
+        btn.textContent = '❤️ حفظ';
+        showAlert('تمت إزالة الكتاب من المفضلة', 'success');
+      }
+      
+      // Update localStorage and count
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+      favoritesCount.textContent = favorites.length;
+    });
   });
-}
-
-// Initialize lazy loading
-lazyLoadImages();
-
-// Alert System
-function showAlert(message, type) {
-  const alertsContainer = document.getElementById('alerts-container');
-  const alertDiv = document.createElement('div');
-  alertDiv.className = `alert alert-${type}`;
-  alertDiv.textContent = message;
   
-  alertsContainer.appendChild(alertDiv);
-  
-  // Remove alert after 5 seconds
-  setTimeout(() => {
-    alertDiv.remove();
-  }, 5000);
-}
+  // Show favorites when clicking favorites link
+  favoritesLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    booksSection.querySelectorAll('.book-card').forEach(card => {
+      const bookId = card.getAttribute('data-book');
+      card.style.display = favorites.includes(bookId) ? '' : 'none';
+    });
+    
+    showAlert('عرض الكتب المفضلة', 'success');
+  });
 
-// HTML Sanitization for comments
-function sanitizeHTML(str) {
-  const temp = document.createElement('div');
-  temp.textContent = str;
-  return temp.innerHTML;
-}
+  // Alert System
+  function showAlert(message, type) {
+    const alertsContainer = document.getElementById('alerts-container');
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type}`;
+    alertDiv.textContent = message;
+    
+    alertsContainer.appendChild(alertDiv);
+    
+    // Remove alert after 5 seconds
+    setTimeout(() => {
+      alertDiv.remove();
+    }, 5000);
+  }
 
-// Login Button
-const loginBtn = document.getElementById('login-btn');
-loginBtn.addEventListener('click', function(e) {
-  e.preventDefault();
-  showAlert('سيتم توفير نظام تسجيل الدخول في الإصدارات القادمة', 'info');
-});
-});
+  // Login Button
+  const loginBtn = document.getElementById('login-btn');
+  loginBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    showAlert('سيتم توفير نظام تسجيل الدخول في الإصدارات القادمة', 'info');
+  });
 </script>
 
-</body> </html>
+</body>
+</html>
