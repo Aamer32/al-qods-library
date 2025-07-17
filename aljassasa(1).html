@@ -294,7 +294,23 @@
         height: 400px;
       }
     }
-  </style>
+  </style> 
+      .rating {
+      margin: 1rem 0;
+      direction: ltr;
+    }
+    
+    .star {
+      color: var(--secondary-color);
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .star:hover, .star.selected {
+      color: gold;
+      transform: scale(1.2);
+    }
 </head>
 <body>
 
