@@ -835,30 +835,22 @@
 
 <!-- JavaScript -->
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Navigation Management
-    const menuToggleBtn = document.querySelector('.menu-toggle');
+     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav');
-    const navOverlay = document.querySelector('.nav-overlay');
-    
-    function toggleNav() {
+
+    menuToggle.addEventListener('click', () => {
       nav.classList.toggle('open');
-      navOverlay.classList.toggle('active');
-      document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
-      menuToggleBtn.textContent = nav.classList.contains('open') ? '✕' : '☰';
-    }
-    
-    menuToggleBtn.addEventListener('click', toggleNav);
-    navOverlay.addEventListener('click', toggleNav);
-    
-    // Close menu when clicking on a link (mobile)
-    document.querySelectorAll('nav a').forEach(link => {
-      link.addEventListener('click', () => {
-        if(window.innerWidth <= 768) {
-          toggleNav();
-        }
-      });
+      nav.classList.toggle('closed');
     });
+
+    // إغلاق القائمة عند النقر خارجها على الشاشات الصغيرة
+    document.addEventListener('click', (e) => {
+      if (!nav.contains(e.target) && !menuToggle.contains(e.target) && nav.classList.contains('open')) {
+        nav.classList.remove('open');
+        nav.classList.add('closed');
+      }
+    });
+
     
     // Nested Menu Management
     document.querySelectorAll('nav ul li a').forEach(link => {
