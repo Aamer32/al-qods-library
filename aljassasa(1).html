@@ -1,1 +1,454 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="description" content="قراءة وتحميل رواية إيكادولي - حنان لاشين | قصة مملكة البلاغة وأسرارها الغامضة" />
+  <meta name="keywords" content="إيكادولي, حنان لاشين, مملكة البلاغة, روايات عربية, تحميل رواية" />
+  <meta name="author" content="مكتبة القدس الإلكترونية" />
+  <meta name="robots" content="index, follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>إيكادولي - حنان لاشين | مكتبة القدس الإلكترونية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-color: #1a5f1a;
+      --secondary-color: #d4af37;
+      --accent-color: #8b4513;
+      --light-bg: #f5f5f0;
+      --dark-bg: #121f0f;
+      --text-color: #333;
+      --light-text: #f5f5f0;
+      --card-bg: #fff;
+      --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --btn-primary: #1a5f1a;
+      --btn-primary-hover: #134713;
+      --btn-secondary: #d4af37;
+      --btn-secondary-hover: #c19b2e;
+    }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Tajawal', sans-serif;
+      color: var(--text-color);
+      background-color: var(--light-bg);
+      line-height: 1.6;
+    }
+
+    /* تحسينات الهيدر */
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: var(--light-text);
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .site-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--secondary-color);
+    }
+    
+    .back-btn {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-size: 1.2rem;
+    }
+
+    /* محتوى صفحة الكتاب */
+    .book-detail-container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    
+    .book-header {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .book-cover {
+      width: 300px;
+      height: 450px;
+      object-fit: cover;
+      border: 3px solid var(--secondary-color);
+      border-radius: 5px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .book-info {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .book-title {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      font-size: 1.8rem;
+    }
+    
+    .book-author {
+      font-size: 1.3rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+    
+    .book-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    
+    .meta-item {
+      background: rgba(212, 175, 55, 0.1);
+      padding: 0.8rem;
+      border-radius: 5px;
+      text-align: center;
+    }
+    
+    .meta-item strong {
+      display: block;
+      color: var(--primary-color);
+      margin-bottom: 0.3rem;
+    }
+    
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      text-align: center;
+      flex: 1;
+      min-width: 150px;
+    }
+    
+    .btn-primary {
+      background: var(--btn-primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--btn-primary-hover);
+    }
+    
+    .btn-secondary {
+      background: var(--btn-secondary);
+      color: var(--primary-color);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--btn-secondary-hover);
+    }
+    
+    .book-description {
+      margin: 2rem 0;
+      line-height: 1.8;
+      padding: 1.5rem;
+      background: rgba(212, 175, 55, 0.05);
+      border-radius: 8px;
+      border-right: 3px solid var(--secondary-color);
+    }
+    
+    .book-description h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    /* قسم القراءة المباشرة */
+    .read-section {
+      margin: 3rem 0;
+    }
+    
+    .read-section h2 {
+      color: var(--primary-color);
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--secondary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .pdf-viewer {
+      width: 100%;
+      height: 600px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    /* قسم الكتب المشابهة */
+    .similar-books {
+      margin: 3rem 0;
+    }
+    
+    .similar-books h2 {
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+    }
+    
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .similar-book {
+      background: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s;
+    }
+    
+    .similar-book:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .similar-book img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+    
+    .similar-book .info {
+      padding: 1rem;
+    }
+    
+    /* قسم المشاركة */
+    .share-section {
+      margin: 2rem 0;
+      text-align: center;
+    }
+    
+    .share-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .share-btn {
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      background: #f0f0f0;
+      color: #333;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+    }
+    
+    .share-btn.facebook {
+      background: #1877f2;
+      color: white;
+    }
+    
+    .share-btn.twitter {
+      background: #1da1f2;
+      color: white;
+    }
+    
+    .share-btn.whatsapp {
+      background: #25d366;
+      color: white;
+    }
+    
+    /* التجاوب مع الشاشات الصغيرة */
+    @media (max-width: 768px) {
+      .book-header {
+        flex-direction: column;
+      }
+      
+      .book-cover {
+        width: 100%;
+        height: auto;
+        max-height: 500px;
+      }
+      
+      .buttons {
+        flex-direction: column;
+      }
+      
+      .pdf-viewer {
+        height: 400px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="back-btn">← العودة</a>
+  <div class="site-title">مكتبة القدس الإلكترونية</div>
+</header>
+
+<div class="book-detail-container">
+  <div class="book-header">
+    <img src="https://th.bing.com/th/id/OIP.yJxNH3GikPIxcAdQ85vskQHaKl?r=0" alt="غلاف رواية إيكادولي" class="book-cover">
+    
+    <div class="book-info">
+      <h1 class="book-title">إيكادولي</h1>
+      <h2 class="book-author">حنان لاشين</h2>
+      
+      <div class="book-meta">
+        <div class="meta-item">
+          <strong>السنة</strong>
+          <span>2021</span>
+        </div>
+        <div class="meta-item">
+          <strong>الصفحات</strong>
+          <span>275</span>
+        </div>
+        <div class="meta-item">
+          <strong>التصنيف</strong>
+          <span>ملحمة الطين والنار </span>
+        </div>
+        <div class="meta-item">
+          <strong>الحجم</strong>
+          <span>4.1MB</span>
+        </div>
+        <div class="meta-item">
+          <strong>المؤلف(ة)</strong>
+          <span>أحمد ال حمدان</span>
+        </div>
+        <div class="meta-item">
+          <strong>دار النشر</strong>
+          <span>دار الكتب</span>
+        </div>
+      </div>
+      
+      <div class="buttons">
+        <a href="الجساسة.pdf" class="btn btn-primary">📖 قراءة مباشرة</a>
+        <a href="الجساسة.pdf" class="btn btn-secondary" download>📥 تحميل الرواية</a>
+      </div>
+      
+     <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            <div class="rating-info" id="ikadoli-info"></div>
+        <span>(4.2 من 5)</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="book-description">
+    <h3>عن الرواية</h3>
+    <p>
+     . في هذه الحياة ستواجه الكثير من المعارك اليومية ولكن معركتك الأهم ستكون تلك التي تخوضها مع ذاتك , لتبقي فيها قلبك سليما وسط كل الدمار الذي يحدث من حولك
+    </p>
+  </div>
+  
+  <div class="read-section" id="read-online">
+    <h2>📖 القراءة المباشرة</h2>
+    <div class="pdf-viewer">
+     <iframe src="الجساسة.pdf" width="100%" height="100%" style="border: none;"></iframe>
+    </div>
+  </div>
+  
+  <div class="share-section">
+    <h3>مشاركة الرواية</h3>
+    <p>ساعد الآخرين في اكتشاف هذه الرواية الرائعة</p>
+    <div class="share-buttons">
+      <a href="#" class="share-btn facebook" onclick="shareOnFacebook()">
+        <span>فيسبوك</span>
+      </a>
+      <a href="#" class="share-btn twitter" onclick="shareOnTwitter()">
+        <span>تويتر</span>
+      </a>
+      <a href="#" class="share-btn whatsapp" onclick="shareOnWhatsApp()">
+        <span>واتساب</span>
+      </a>
+    </div>
+  </div>
+  
+  <div class="similar-books">
+    <h2>📚 من نفس السلسلة</h2>
+    
+
+<script>
+      document.querySelectorAll('.rating').forEach(ratingDiv => {
+      const stars = ratingDiv.querySelectorAll('.star');
+      const bookKey = ratingDiv.getAttribute('data-book');
+      const infoDiv = ratingDiv.querySelector('.rating-info');
+      
+      // Load rating from localStorage
+      const savedRating = localStorage.getItem('rating_' + bookKey);
+      if(savedRating) {
+        stars.forEach((star, index) => {
+          star.classList.toggle('selected', index < savedRating);
+        });
+        infoDiv.textContent = `تقييمك: ${savedRating} من 5`;
+      }
+      
+      // Rating event delegation
+      ratingDiv.addEventListener('click', (e) => {
+        if(e.target.classList.contains('star')) {
+          const clickedStar = e.target;
+          const starsArray = Array.from(stars);
+          const rating = starsArray.indexOf(clickedStar) + 1;
+          
+          localStorage.setItem('rating_' + bookKey, rating);
+          
+          stars.forEach((star, index) => {
+            star.classList.toggle('selected', index < rating);
+          });
+          
+          infoDiv.textContent = `تقييمك: ${rating} من 5`;
+          showAlert('شكراً لتقييمك الكتاب!', 'success');
+        }
+      });
+    });
+  // وظائف المشاركة
+  function shareOnFacebook() {
+    const url = encodeURIComponent(window.location.href);
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+  }
+  
+  function shareOnTwitter() {
+    const text = encodeURIComponent('اكتشفت رواية رائعة: "إيكادولي" لحنان لاشين');
+    const url = encodeURIComponent(window.location.href);
+    window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+  }
+  
+  function shareOnWhatsApp() {
+    const text = encodeURIComponent('اقرأ رواية "إيكادولي" لحنان لاشين: ' + window.location.href);
+    window.open(`https://wa.me/?text=${text}`, '_blank');
+  }
+  
+  // نظام التقييم
+  document.querySelectorAll('.star').forEach((star, index, stars) => {
+    star.addEventListener('click', () => {
+      // إزالة التحديد من جميع النجوم
+      stars.forEach(s => s.classList.remove('selected'));
+      
+      // تحديد النجوم حتى النجمة المختارة
+      for (let i = 0; i <= index; i++) {
+        stars[i].classList.add('selected');
+      }
+      
+      // هنا يمكنك إرسال التقييم إلى الخادم إذا كان لديك نظام تسجيل دخول
+    });
+  });
+</script>
+
+</body>
+</html>
