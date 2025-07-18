@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="shortcut icon" type="x-icon" href="alquds-library.png">
-  <meta name="description" content="قراءة وتحميل رواية إيكادولي - حنان لاشين | قصة مملكة البلاغة وأسرارها الغامضة" />
-  <meta name="keywords" content="إيكادولي, حنان لاشين, مملكة البلاغة, روايات عربية, تحميل رواية" />
+  <meta name="description" content="قراءة وتحميل رواية أوبال - حنان لاشين | الجزء الثاني من سلسلة مملكة البلاغة" />
+  <meta name="keywords" content="أوبال, حنان لاشين, مملكة البلاغة, روايات عربية, تحميل رواية" />
   <meta name="author" content="مكتبة القدس الإلكترونية" />
   <meta name="robots" content="index, follow" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -175,6 +175,46 @@
       margin-bottom: 1rem;
     }
     
+    /* نظام التقييم */
+    .rating-container {
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .rating-stars {
+      display: flex;
+      direction: ltr; /* عكس اتجاه النجوم لتصحيح التحديد */
+    }
+    
+    .rating-star {
+      font-size: 1.8rem;
+      color: #ddd;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .rating-star:hover,
+    .rating-star.hovered {
+      color: var(--secondary-color);
+    }
+    
+    .rating-star.selected {
+      color: var(--secondary-color);
+    }
+    
+    .rating-text {
+      margin-right: 10px;
+      font-size: 0.9rem;
+      color: var(--text-color);
+    }
+    
+    .rating-value {
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+    
     /* قسم القراءة المباشرة */
     .read-section {
       margin: 3rem 0;
@@ -323,7 +363,7 @@
         </div>
         <div class="meta-item">
           <strong>التصنيف</strong>
-          <span>مملكة البلاغة</span>
+          <span>مملكة البلاغة - الجزء الثاني</span>
         </div>
         <div class="meta-item">
           <strong>الحجم</strong>
@@ -344,13 +384,17 @@
         <a href="أوبال.pdf" class="btn btn-secondary" download>📥 تحميل الرواية</a>
       </div>
       
-      <div class="rating">
-        <span class="star">★</span>
-        <span class="star">★</span>
-        <span class="star">★</span>
-        <span class="star">★</span>
-        <span class="star">★</span>
-        <span>(4.2 من 5)</span>
+      <div class="rating-container">
+        <span class="rating-text">التقييم:</span>
+        <div class="rating-stars" id="rating-stars">
+          <span class="rating-star" data-value="5">★</span>
+          <span class="rating-star" data-value="4">★</span>
+          <span class="rating-star" data-value="3">★</span>
+          <span class="rating-star" data-value="2">★</span>
+          <span class="rating-star" data-value="1">★</span>
+        </div>
+        <span class="rating-value" id="rating-value">4.2</span>
+        <span>(من 5)</span>
       </div>
     </div>
   </div>
@@ -358,7 +402,11 @@
   <div class="book-description">
     <h3>عن الرواية</h3>
     <p>
-     رواية أوبال الجزء 2 من سلسلة مملكة البلاغة لحنان لاشين .. زمرة من الخيول كانت تركض في تناسق بديع، على إيقاع واحد، أصوات حوافرهم وهي تقدح الأرض بتناغم مع ضربات قلوبهم المتلاحقة، كانت قوائمهم تصطف على التوازي بشكل أنيق وهم يتسابقون، وقد وحدوا سرعتهم وكأنهم نسيج واحد، خف المطر شيئا فشيئا حتى صار كدمع العين هتوناََ رقيقاَ، وانبثق قوس المطر يزين صفحة السماء ويصافح خط الأفق من بعيد
+      رواية "أوبال" هي الجزء الثاني من سلسلة "مملكة البلاغة" للكاتبة حنان لاشين، حيث تستكمل الأحداث بعد نهاية الجزء الأول "إيكادولي". تنتقل بنا الرواية إلى أعماق جديدة من عالم البلاغة الساحر، حيث الأسرار المدفونة والتحالفات الهشة والحب الذي يتحدى المصائر.
+      
+      تتابع الأحداث تطور شخصية "أوبال" الفتاة ذات الأصول الغامضة التي تحمل في داخلها قوة خارقة، بينما تحاول كشف الحقيقة عن ماضيها وعلاقتها بمملكة البلاغة. تصبح أوبال في صراع بين ولائها لماضيها وحبها لمستقبل لا تعرف إن كان لها حق فيه.
+      
+      بكتابة شاعرية وأسلوب ساحر، تأخذنا حنان لاشين في رحلة مليئة بالمفاجآت والعواطف الجياشة، حيث لا شيء كما يبدو عليه، وكل حقيقة تكشف أخرى أكثر غموضاً.
     </p>
   </div>
   
@@ -389,11 +437,11 @@
     <h2>📚 من نفس السلسلة</h2>
     <div class="books-grid">
       <div class="similar-book">
-        <img src="https://th.bing.com/th/id/OIP.yJxNH3GikPIxcAdQ85vskQHaKl?r=0" alt="غلاف رواية أوبال">
+        <img src="https://th.bing.com/th/id/OIP.yJxNH3GikPIxcAdQ85vskQHaKl?r=0" alt="غلاف رواية إيكادولي">
         <div class="info">
           <h3>إيكادولي</h3>
           <p>حنان لاشين</p>
-          <a href="ikaaadoli(1).html" class="btn btn-secondary">عرض التفاصيل</a>
+          <a href="ikaaadoli.html" class="btn btn-secondary">عرض التفاصيل</a>
         </div>
       </div>
       
@@ -402,16 +450,26 @@
         <div class="info">
           <h3>أمانوس</h3>
           <p>حنان لاشين</p>
-          <a href="amanos(1).html" class="btn btn-secondary">عرض التفاصيل</a>
+          <a href="amanos.html" class="btn btn-secondary">عرض التفاصيل</a>
         </div>
       </div>
-       <div class="similar-book">
+      
+      <div class="similar-book">
         <img src="https://th.bing.com/th/id/OIP.JKrcQXpZkO66p9hrv8rt2gAAAA?w=117&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="غلاف رواية كويكول">
         <div class="info">
           <h3>كويكول</h3>
           <p>حنان لاشين</p>
+          <a href="kowikol(1).html" class="btn btn-secondary">عرض التفاصيل</a>
+        </div>
+         <div class="books-grid">
+      <div class="similar-book">
+        <img src="data:image/jpeg;base64,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" alt="غلاف رواية سقطري">
+        <div class="info">
+          <h3>سقطري</h3>
+          <p>حنان لاشين</p>
           <a href="soqtri(1).html" class="btn btn-secondary">عرض التفاصيل</a>
         </div>
+      </div>
       </div>
     </div>
   </div>
@@ -425,28 +483,69 @@
   }
   
   function shareOnTwitter() {
-    const text = encodeURIComponent('اكتشفت رواية رائعة: "إيكادولي" لحنان لاشين');
+    const text = encodeURIComponent('اكتشفت رواية رائعة: "أوبال" لحنان لاشين - الجزء الثاني من سلسلة مملكة البلاغة');
     const url = encodeURIComponent(window.location.href);
     window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
   }
   
   function shareOnWhatsApp() {
-    const text = encodeURIComponent('اقرأ رواية "إيكادولي" لحنان لاشين: ' + window.location.href);
+    const text = encodeURIComponent('أقرأ الآن رواية "أوبال" الجزء الثاني من سلسلة مملكة البلاغة لحنان لاشين: ' + window.location.href);
     window.open(`https://wa.me/?text=${text}`, '_blank');
   }
   
-  // نظام التقييم
-  document.querySelectorAll('.star').forEach((star, index, stars) => {
-    star.addEventListener('click', () => {
-     
-      stars.forEach(s => s.classList.remove('selected'));
+  // نظام التقييم التفاعلي
+  document.addEventListener('DOMContentLoaded', function() {
+    const stars = document.querySelectorAll('.rating-star');
+    const ratingValue = document.getElementById('rating-value');
+    let currentRating = 4.2; // القيمة الافتراضية
+    
+    // تحديث النجوم المعلمة
+    function updateStars(value) {
+      stars.forEach(star => {
+        const starValue = parseInt(star.getAttribute('data-value'));
+        if (starValue <= value) {
+          star.classList.add('selected');
+        } else {
+          star.classList.remove('selected');
+        }
+      });
+    }
+    
+    // تحديث القيمة المعروضة
+    function updateRatingValue(value) {
+      ratingValue.textContent = value.toFixed(1);
+    }
+    
+    // تهيئة النجوم الأولى
+    updateStars(Math.round(currentRating));
+    
+    // أحداث النجوم
+    stars.forEach(star => {
+      star.addEventListener('click', function() {
+        const value = parseInt(this.getAttribute('data-value'));
+        currentRating = value;
+        updateStars(value);
+        updateRatingValue(value);
+        
+        // هنا يمكنك إرسال التقييم إلى الخادم
+        console.log(`تم التقييم بـ ${value} نجوم`);
+      });
       
-      // تحديد النجوم حتى النجمة المختارة
-      for (let i = 0; i <= index; i++) {
-        stars[i].classList.add('selected');
-      }
+      star.addEventListener('mouseover', function() {
+        const value = parseInt(this.getAttribute('data-value'));
+        stars.forEach(s => {
+          const sValue = parseInt(s.getAttribute('data-value'));
+          if (sValue <= value) {
+            s.classList.add('hovered');
+          } else {
+            s.classList.remove('hovered');
+          }
+        });
+      });
       
-      // هنا يمكنك إرسال التقييم إلى الخادم إذا كان لديك نظام تسجيل دخول
+      star.addEventListener('mouseout', function() {
+        stars.forEach(s => s.classList.remove('hovered'));
+      });
     });
   });
 </script>
