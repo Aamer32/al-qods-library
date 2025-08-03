@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="shortcut icon" type="x-icon" href="alquds-library.png">
-  <meta name="description" content="قراءة وتحميل رواية إيكادولي - حنان لاشين | قصة مملكة البلاغة وأسرارها الغامضة" />
+  <meta name="description" content="قراءة وتحميل رواية إيكادولي - حنان لاشين | الجزء الأول من سلسلة مملكة البلاغة" />
   <meta name="keywords" content="إيكادولي, حنان لاشين, مملكة البلاغة, روايات عربية, تحميل رواية" />
   <meta name="author" content="مكتبة القدس الإلكترونية" />
   <meta name="robots" content="index, follow" />
@@ -41,7 +41,6 @@
       line-height: 1.6;
     }
 
-    /* تحسينات الهيدر */
     header {
       background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
       color: var(--light-text);
@@ -65,7 +64,6 @@
       font-size: 1.2rem;
     }
 
-    /* محتوى صفحة الكتاب */
     .book-detail-container {
       max-width: 1000px;
       margin: 2rem auto;
@@ -175,7 +173,46 @@
       margin-bottom: 1rem;
     }
     
-    /* قسم القراءة المباشرة */
+  
+    .rating-container {
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .rating-stars {
+      display: flex;
+      direction: ltr; 
+    }
+    
+    .rating-star {
+      font-size: 1.8rem;
+      color: #ddd;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .rating-star:hover,
+    .rating-star.hovered {
+      color: var(--secondary-color);
+    }
+    
+    .rating-star.selected {
+      color: var(--secondary-color);
+    }
+    
+    .rating-text {
+      margin-right: 10px;
+      font-size: 0.9rem;
+      color: var(--text-color);
+    }
+    
+    .rating-value {
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+    
     .read-section {
       margin: 3rem 0;
     }
@@ -194,8 +231,6 @@
       border-radius: 8px;
       overflow: hidden;
     }
-    
-    /* قسم الكتب المشابهة */
     .similar-books {
       margin: 3rem 0;
     }
@@ -234,7 +269,6 @@
       padding: 1rem;
     }
     
-    /* قسم المشاركة */
     .share-section {
       margin: 2rem 0;
       text-align: center;
@@ -275,7 +309,6 @@
       color: white;
     }
     
-    /* التجاوب مع الشاشات الصغيرة */
     @media (max-width: 768px) {
       .book-header {
         flex-direction: column;
@@ -306,7 +339,7 @@
 
 <div class="book-detail-container">
   <div class="book-header">
-    <img src="https://th.bing.com/th/id/OIP.yJxNH3GikPIxcAdQ85vskQHaKl?r=0" alt="غلاف رواية إيكادولي" class="book-cover">
+    <img src="https://th.bing.com/th/id/OIP.yJxNH3GikPIxcAdQ85vskQHaKl?r=0" alt="غلاف رواية أوبال" class="book-cover">
     
     <div class="book-info">
       <h1 class="book-title">إيكادولي</h1>
@@ -323,11 +356,11 @@
         </div>
         <div class="meta-item">
           <strong>التصنيف</strong>
-          <span>مملكة البلاغة</span>
+          <span>مملكة البلاغة - الجزء الأول</span>
         </div>
         <div class="meta-item">
           <strong>الحجم</strong>
-          <span>3.72MB</span>
+          <span>4.2MB</span>
         </div>
         <div class="meta-item">
           <strong>المؤلف(ة)</strong>
@@ -344,9 +377,17 @@
         <a href="إيكادولي.pdf" class="btn btn-secondary" download>📥 تحميل الرواية</a>
       </div>
       
-     <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-            <div class="rating-info" id="ikadoli-info"></div>
-        <span>(4.2 من 5)</span>
+      <div class="rating-container">
+        <span class="rating-text">التقييم:</span>
+        <div class="rating-stars" id="rating-stars">
+          <span class="rating-star" data-value="5">★</span>
+          <span class="rating-star" data-value="4">★</span>
+          <span class="rating-star" data-value="3">★</span>
+          <span class="rating-star" data-value="2">★</span>
+          <span class="rating-star" data-value="1">★</span>
+        </div>
+        <span class="rating-value" id="rating-value">4.2</span>
+        <span>(من 5)</span>
       </div>
     </div>
   </div>
@@ -354,10 +395,8 @@
   <div class="book-description">
     <h3>عن الرواية</h3>
     <p>
-      "إيكادولي" رواية خيالية تأخذك في رحلة إلى مملكة البلاغة، حيث الكلمات تحيا وتتنفس. تتبع القصة مسار بطلتنا وهي تكتشف أسرار هذه المملكة العجيبة وقوانينها الغريبة. بين مفاجآت الأدب وأسرار اللغة، تنسج حنان لاشين عالماً ساحراً يجمع بين الخيال العميق والبلاغة العربية الأصيلة.
-    </p>
-    <p>
-      من خلال شخصيات لا تنسى وأحداث مشوقة، تطرح الرواية أسئلة عميقة عن قوة الكلمة ودورها في تشكيل الواقع. إنها رحلة في أعماق اللغة العربية وجمالياتها، تثري العقل والروح معاً.
+     "إيكادولي" رواية خيالية تأخذك في رحلة إلى مملكة البلاغة، حيث الكلمات تحيا وتتنفس. تتبع القصة مسار بطلتنا وهي تكتشف أسرار هذه المملكة العجيبة وقوانينها الغريبة. بين مفاجآت الأدب وأسرار اللغة، تنسج حنان لاشين عالماً ساحراً يجمع بين الخيال العميق والبلاغة العربية الأصيلة.
+        من خلال شخصيات لا تنسى وأحداث مشوقة، تطرح الرواية أسئلة عميقة عن قوة الكلمة ودورها في تشكيل الواقع. إنها رحلة في أعماق اللغة العربية وجمالياتها، تثري العقل والروح معاً.
     </p>
   </div>
   
@@ -388,7 +427,7 @@
     <h2>📚 من نفس السلسلة</h2>
     <div class="books-grid">
       <div class="similar-book">
-        <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1736849771i/38261280.jpg" alt="غلاف رواية أوبال">
+        <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1736849771i/38261280.jpg" alt="غلاف رواية إيكادولي">
         <div class="info">
           <h3>أوبال</h3>
           <p>حنان لاشين</p>
@@ -422,44 +461,12 @@
           <a href="soqtri(1).html" class="btn btn-secondary">عرض التفاصيل</a>
         </div>
       </div>
-
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-      document.querySelectorAll('.rating').forEach(ratingDiv => {
-      const stars = ratingDiv.querySelectorAll('.star');
-      const bookKey = ratingDiv.getAttribute('data-book');
-      const infoDiv = ratingDiv.querySelector('.rating-info');
-      
-      // Load rating from localStorage
-      const savedRating = localStorage.getItem('rating_' + bookKey);
-      if(savedRating) {
-        stars.forEach((star, index) => {
-          star.classList.toggle('selected', index < savedRating);
-        });
-        infoDiv.textContent = `تقييمك: ${savedRating} من 5`;
-      }
-      
-      // Rating event delegation
-      ratingDiv.addEventListener('click', (e) => {
-        if(e.target.classList.contains('star')) {
-          const clickedStar = e.target;
-          const starsArray = Array.from(stars);
-          const rating = starsArray.indexOf(clickedStar) + 1;
-          
-          localStorage.setItem('rating_' + bookKey, rating);
-          
-          stars.forEach((star, index) => {
-            star.classList.toggle('selected', index < rating);
-          });
-          
-          infoDiv.textContent = `تقييمك: ${rating} من 5`;
-          showAlert('شكراً لتقييمك الكتاب!', 'success');
-        }
-      });
-    });
   // وظائف المشاركة
   function shareOnFacebook() {
     const url = encodeURIComponent(window.location.href);
@@ -467,31 +474,71 @@
   }
   
   function shareOnTwitter() {
-    const text = encodeURIComponent('اكتشفت رواية رائعة: "إيكادولي" لحنان لاشين');
+    const text = encodeURIComponent('اكتشفت رواية رائعة: "إيكادولي" لحنان لاشين - الجزء الأول من سلسلة مملكة البلاغة');
     const url = encodeURIComponent(window.location.href);
     window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
   }
   
   function shareOnWhatsApp() {
-    const text = encodeURIComponent('اقرأ رواية "إيكادولي" لحنان لاشين: ' + window.location.href);
+    const text = encodeURIComponent('أقرأ الآن رواية "إيكادولي" الجزء الأول من سلسلة مملكة البلاغة لحنان لاشين: ' + window.location.href);
     window.open(`https://wa.me/?text=${text}`, '_blank');
   }
   
- 
-  document.querySelectorAll('.star').forEach((star, index, stars) => {
-    star.addEventListener('click', () => {
-      // إزالة التحديد من جميع النجوم
-      stars.forEach(s => s.classList.remove('selected'));
+  document.addEventListener('DOMContentLoaded', function() {
+    const stars = document.querySelectorAll('.rating-star');
+    const ratingValue = document.getElementById('rating-value');
+    let currentRating = 4.2; 
+    
+  
+    function updateStars(value) {
+      stars.forEach(star => {
+        const starValue = parseInt(star.getAttribute('data-value'));
+        if (starValue <= value) {
+          star.classList.add('selected');
+        } else {
+          star.classList.remove('selected');
+        }
+      });
+    }
+    function updateRatingValue(value) {
+      ratingValue.textContent = value.toFixed(1);
+    }
+    
+
+    updateStars(Math.round(currentRating));
+    
+
+    stars.forEach(star => {
+      star.addEventListener('click', function() {
+        const value = parseInt(this.getAttribute('data-value'));
+        currentRating = value;
+        updateStars(value);
+        updateRatingValue(value);
+        
       
-      // تحديد النجوم حتى النجمة المختارة
-      for (let i = 0; i <= index; i++) {
-        stars[i].classList.add('selected');
-      }
+        console.log(`تم التقييم بـ ${value} نجوم`);
+      });
       
-      // هنا يمكنك إرسال التقييم إلى الخادم إذا كان لديك نظام تسجيل دخول
+      star.addEventListener('mouseover', function() {
+        const value = parseInt(this.getAttribute('data-value'));
+        stars.forEach(s => {
+          const sValue = parseInt(s.getAttribute('data-value'));
+          if (sValue <= value) {
+            s.classList.add('hovered');
+          } else {
+            s.classList.remove('hovered');
+          }
+        });
+      });
+      
+      star.addEventListener('mouseout', function() {
+        stars.forEach(s => s.classList.remove('hovered'));
+      });
     });
   });
 </script>
 
 </body>
 </html>
+
+
