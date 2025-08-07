@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="shortcut icon" type="x-icon" href="alquds-library.png">
+  <meta name="description" content="قراءة وتحميل رواية أماريتا -  همرو هبد الحميد | الجزء الثاني من سلسلة  أرض زيكولا" />
+  <meta name="keywords" content="أماريتا, عمرو عبد الحميد , أرض زيكولا , روايات عربية, تحميل رواية" />
+  <meta name="author" content="مكتبة القدس الإلكترونية" />
+  <meta name="robots" content="index, follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>أماريتا - عمرو عبد الحميد  | مكتبة القدس الإلكترونية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-color: #1a5f1a;
+      --secondary-color: #d4af37;
+      --accent-color: #8b4513;
+      --light-bg: #f5f5f0;
+      --dark-bg: #121f0f;
+      --text-color: #333;
+      --light-text: #f5f5f0;
+      --card-bg: #fff;
+      --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --btn-primary: #1a5f1a;
+      --btn-primary-hover: #134713;
+      --btn-secondary: #d4af37;
+      --btn-secondary-hover: #c19b2e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Tajawal', sans-serif;
+      color: var(--text-color);
+      background-color: var(--light-bg);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: var(--light-text);
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .site-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--secondary-color);
+    }
+    
+    .back-btn {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-size: 1.2rem;
+    }
+
+    .book-detail-container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    
+    .book-header {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .book-cover {
+      width: 300px;
+      height: 450px;
+      object-fit: cover;
+      border: 3px solid var(--secondary-color);
+      border-radius: 5px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .book-info {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .book-title {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      font-size: 1.8rem;
+    }
+    
+    .book-author {
+      font-size: 1.3rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+    
+    .book-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    
+    .meta-item {
+      background: rgba(212, 175, 55, 0.1);
+      padding: 0.8rem;
+      border-radius: 5px;
+      text-align: center;
+    }
+    
+    .meta-item strong {
+      display: block;
+      color: var(--primary-color);
+      margin-bottom: 0.3rem;
+    }
+    
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      text-align: center;
+      flex: 1;
+      min-width: 150px;
+    }
+    
+    .btn-primary {
+      background: var(--btn-primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--btn-primary-hover);
+    }
+    
+    .btn-secondary {
+      background: var(--btn-secondary);
+      color: var(--primary-color);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--btn-secondary-hover);
+    }
+    
+    .book-description {
+      margin: 2rem 0;
+      line-height: 1.8;
+      padding: 1.5rem;
+      background: rgba(212, 175, 55, 0.05);
+      border-radius: 8px;
+      border-right: 3px solid var(--secondary-color);
+    }
+    
+    .book-description h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+  
+    .rating-container {
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .rating-stars {
+      display: flex;
+      direction: ltr; 
+    }
+    
+    .rating-star {
+      font-size: 1.8rem;
+      color: #ddd;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .rating-star:hover,
+    .rating-star.hovered {
+      color: var(--secondary-color);
+    }
+    
+    .rating-star.selected {
+      color: var(--secondary-color);
+    }
+    
+    .rating-text {
+      margin-right: 10px;
+      font-size: 0.9rem;
+      color: var(--text-color);
+    }
+    
+    .rating-value {
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+    
+    .read-section {
+      margin: 3rem 0;
+    }
+    
+    .read-section h2 {
+      color: var(--primary-color);
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--secondary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .pdf-viewer {
+      width: 100%;
+      height: 600px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .similar-books {
+      margin: 3rem 0;
+    }
+    
+    .similar-books h2 {
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+    }
+    
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .similar-book {
+      background: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s;
+    }
+    
+    .similar-book:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .similar-book img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+    
+    .similar-book .info {
+      padding: 1rem;
+    }
+    
+    .share-section {
+      margin: 2rem 0;
+      text-align: center;
+    }
+    
+    .share-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .share-btn {
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      background: #f0f0f0;
+      color: #333;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+    }
+    
+    .share-btn.facebook {
+      background: #1877f2;
+      color: white;
+    }
+    
+    .share-btn.twitter {
+      background: #1da1f2;
+      color: white;
+    }
+    
+    .share-btn.whatsapp {
+      background: #25d366;
+      color: white;
+    }
+    
+    @media (max-width: 768px) {
+      .book-header {
+        flex-direction: column;
+      }
+      
+      .book-cover {
+        width: 100%;
+        height: auto;
+        max-height: 500px;
+      }
+      
+      .buttons {
+        flex-direction: column;
+      }
+      
+      .pdf-viewer {
+        height: 400px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="back-btn">← العودة</a>
+  <div class="site-title">مكتبة القدس الإلكترونية</div>
+</header>
+
+<div class="book-detail-container">
+  <div class="book-header">
+    <img src="data:image/webp;base64,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" alt="غلاف رواية أوبال" class="book-cover">
+    
+    <div class="book-info">
+      <h1 class="book-title">أرض زيكولا</h1>
+      <h2 class="book-author"> </h2>
+      
+      <div class="book-meta">
+        <div class="meta-item">
+          <strong>السنة</strong>
+          <span>2016</span>
+        </div>
+        <div class="meta-item">
+          <strong>الصفحات</strong>
+          <span>316</span>
+        </div>
+        <div class="meta-item">
+          <strong>التصنيف</strong>
+          <span>أرض زيكولا  - الجزء الثاني</span>
+        </div>
+        <div class="meta-item">
+          <strong>الحجم</strong>
+          <span>4.2MB</span>
+        </div>
+        <div class="meta-item">
+          <strong>المؤلف(ة)</strong>
+          <span> عمرو عبد الحميد</span>
+        </div>
+        <div class="meta-item">
+          <strong>دار النشر</strong>
+          <span>عصير الكتب</span>
+        </div>
+      </div>
+      
+      <div class="buttons">
+        <a href="أماريتا.pdf" class="btn btn-primary">📖 قراءة مباشرة</a>
+        <a href="أماريتا.pdf" class="btn btn-secondary" download>📥 تحميل الرواية</a>
+      </div>
+      
+      <div class="rating-container">
+        <span class="rating-text">التقييم:</span>
+        <div class="rating-stars" id="rating-stars">
+          <span class="rating-star" data-value="5">★</span>
+          <span class="rating-star" data-value="4">★</span>
+          <span class="rating-star" data-value="3">★</span>
+          <span class="rating-star" data-value="2">★</span>
+          <span class="rating-star" data-value="1">★</span>
+        </div>
+        <span class="rating-value" id="rating-value">4.2</span>
+        <span>(من 5)</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="book-description">
+    <h3>عن الرواية</h3>
+    <p>تبدأ أحداث الرواية من حيث انتهى الجزء الأول، حيث تهرب الطبيبة "أسيل" من أرض زيكولا بعد اتهامها بالخيانة. تصل إلى بلدتها "بيجانا"، لكنها تُسجن تمهيدًا لتسليمها إلى زيكولا. بمساعدة أحد المساجين، تهرب أسيل وتنضم إلى مجموعة من الفقراء الذين يُباعون إلى أرض "أماريتا" كعبيد. هناك، تعيش أسيل مع بحار عجوز وتعمل في الجبال، لكنها تحاول العودة إلى زيكولا بمساعدة البحار، الذي يموت أثناء الرحلة. تُعتقل أسيل مرة أخرى بتهمة الخيانة، لكن الملك "تميم" ملك أماريتا يُعجب بجرأتها ويقع في حبها. عندما تُصاب أسيل بوعكة صحية غامضة، يكتشف تميم أن زيكولا تستنزف ذكاء الخونة كعقاب لهم. يعلن تميم الحرب على زيكولا لإنقاذ أسيل، ويستعين بخالد، بطل الجزء الأول، الذي يضحي بجزء من ذكائه لشفائها. تنتهي الرواية بانتصار أماريتا وتغيير قوانين زيكولا الظالمة.
+    </p>
+  </div>
+  
+  <div class="read-section" id="read-online">
+    <h2>📖 القراءة المباشرة</h2>
+    <div class="pdf-viewer">
+     <iframe src="أماريتا.pdf" width="100%" height="100%" style="border: none;"></iframe>
+    </div>
+  </div>
+  
+  <div class="share-section">
+    <h3>مشاركة الرواية</h3>
+    <p>ساعد الآخرين في اكتشاف هذه الرواية الرائعة</p>
+    <div class="share-buttons">
+      <a href="#" class="share-btn facebook" onclick="shareOnFacebook()">
+        <span>فيسبوك</span>
+      </a>
+      <a href="#" class="share-btn twitter" onclick="shareOnTwitter()">
+        <span>تويتر</span>
+      </a>
+      <a href="#" class="share-btn whatsapp" onclick="shareOnWhatsApp()">
+        <span>واتساب</span>
+      </a>
+    </div>
+  </div>
+  
+  <div class="similar-books">
+    <h2>📚 من نفس السلسلة</h2>
+    <div class="books-grid">
+      <div class="similar-book">
+        <img src="https://thfvnext.bing.com/th/id/OIP.xyGaXpDxNK8LcK9tYuHtWgHaHa?w=172&h=180&c=7&r=0&o=7&cb=thfvnext&dpr=1.3&pid=1.7&rm=3" alt="غلاف رواية إيكادولي">
+        <div class="info">
+          <h3>أرض زيكولا</h3>
+          <p>عمرو عبد الحميد </p>
+          <a href="ardozikola(1).html" class="btn btn-secondary">عرض التفاصيل</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // وظائف المشاركة  function shareOnFacebook() {
+    const url = encodeURIComponent(window.location.href);
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+  }
+  
+  function shareOnTwitter() {
+    const text = encodeURIComponent('اكتشفت رواية رائعة: "أماريتا" لعمرو عبد الحميد  - الجزء الثاني من سلسلة ارض زيكولا ');
+    const url = encodeURIComponent(window.location.href);
+    window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+  }
+  
+  function shareOnWhatsApp() {
+    const text = encodeURIComponent('أقرأ الآن رواية "أماريتا" الجزء الثاني من سلسلة ارض زيكولا   لعمرو عبد الحميد: ' + window.location.href);
+    window.open(`https://wa.me/?text=${text}`, '_blank');
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    const stars = document.querySelectorAll('.rating-star');
+    const ratingValue = document.getElementById('rating-value');
+    let currentRating = 4.2; 
+    
+  
+    function updateStars(value) {
+      stars.forEach(star => {
+        const starValue = parseInt(star.getAttribute('data-value'));
+        if (starValue <= value) {
+          star.classList.add('selected');
+        } else {
+          star.classList.remove('selected');
+        }
+      });
+    }
+    function updateRatingValue(value) {
+      ratingValue.textContent = value.toFixed(1);
+    }
+    
+
+    updateStars(Math.round(currentRating));
+    
+
+    stars.forEach(star => {
+      star.addEventListener('click', function() {
+        const value = parseInt(this.getAttribute('data-value'));
+        currentRating = value;
+        updateStars(value);
+        updateRatingValue(value);
+        
+      
+        console.log(`تم التقييم بـ ${value} نجوم`);
+      });
+      
+      star.addEventListener('mouseover', function() {
+        const value = parseInt(this.getAttribute('data-value'));
+        stars.forEach(s => {
+          const sValue = parseInt(s.getAttribute('data-value'));
+          if (sValue <= value) {
+            s.classList.add('hovered');
+          } else {
+            s.classList.remove('hovered');
+          }
+        });
+      });
+      
+      star.addEventListener('mouseout', function() {
+        stars.forEach(s => s.classList.remove('hovered'));
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
