@@ -231,6 +231,46 @@
       border-radius: 8px;
       overflow: hidden;
     }
+
+    /* قسم الفيديو الجديد */
+    .video-section {
+      margin: 3rem 0;
+    }
+    
+    .video-section h2 {
+      color: var(--primary-color);
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--secondary-color);
+      margin-bottom: 1.5rem;
+    }
+    
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* نسبة 16:9 */
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: var(--card-shadow);
+    }
+    
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    
+    .video-description {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: rgba(212, 175, 55, 0.05);
+      border-radius: 8px;
+      text-align: center;
+    }
+    
     .similar-books {
       margin: 3rem 0;
     }
@@ -400,6 +440,17 @@
     </p>
   </div>
   
+  <!-- قسم الفيديو المضاف -->
+  <div class="video-section">
+    <h2>📹 شاهد فيديو عن الرواية</h2>
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/H4pUmVOR4HE" title="فيديو عن رواية إيكادولي - حنان لاشين" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="video-description">
+      <p>مقتطفات من رواية إيكادولي للكاتبة حنان لاشين - الجزء الأول من سلسلة مملكة البلاغة</p>
+    </div>
+  </div>
+  
   <div class="read-section" id="read-online">
     <h2>📖 القراءة المباشرة</h2>
     <div class="pdf-viewer">
@@ -422,9 +473,7 @@
       </a>
     </div>
   </div>
-  
-  <div class="similar-books">
-    <h2>📚 من نفس السلسلة</h2>
+   <h2>📚 من نفس السلسلة</h2>
     <div class="books-grid">
       <div class="similar-book">
         <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1736849771i/38261280.jpg" alt="غلاف رواية إيكادولي">
@@ -465,7 +514,6 @@
     </div>
   </div>
 </div>
-
 <script>
   // وظائف المشاركة
   function shareOnFacebook() {
@@ -484,12 +532,12 @@
     window.open(`https://wa.me/?text=${text}`, '_blank');
   }
   
+  // وظيفة التقييم بالنجوم
   document.addEventListener('DOMContentLoaded', function() {
     const stars = document.querySelectorAll('.rating-star');
     const ratingValue = document.getElementById('rating-value');
     let currentRating = 4.2; 
     
-  
     function updateStars(value) {
       stars.forEach(star => {
         const starValue = parseInt(star.getAttribute('data-value'));
@@ -500,14 +548,15 @@
         }
       });
     }
+    
     function updateRatingValue(value) {
       ratingValue.textContent = value.toFixed(1);
     }
     
-
+    // تهيئة النجوم بناءً على التقييم الحالي
     updateStars(Math.round(currentRating));
     
-
+    // إضافة مستمعي الأحداث للنجوم
     stars.forEach(star => {
       star.addEventListener('click', function() {
         const value = parseInt(this.getAttribute('data-value'));
@@ -515,7 +564,7 @@
         updateStars(value);
         updateRatingValue(value);
         
-      
+        // هنا يمكنك إضافة كود لحفظ التقييم في قاعدة البيانات إذا لزم الأمر
         console.log(`تم التقييم بـ ${value} نجوم`);
       });
       
@@ -536,9 +585,52 @@
       });
     });
   });
+
+  // وظيفة إضافة تأثير التمرير السلس للروابط الداخلية
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      if (targetId !== '#') {
+        document.querySelector(targetId).scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // وظيفة تحميل الصفحة - يمكن إضافة تأثيرات عند التحميل
+  window.addEventListener('load', function() {
+    console.log('تم تحميل الصفحة بنجاح');
+    
+    // إضافة تأثير ظهور تدريجي للمحتوى
+    document.body.style.opacity = 0;
+    document.body.style.transition = 'opacity 0.5s ease-in';
+    
+    setTimeout(function() {
+      document.body.style.opacity = 1;
+    }, 100);
+  });
+
+  // وظيفة لإظهار/إخفاء زر العودة للأعلى
+  window.addEventListener('scroll', function() {
+    const backBtn = document.querySelector('.back-btn');
+    if (window.scrollY > 300) {
+      backBtn.style.display = 'block';
+    } else {
+      backBtn.style.display = 'none';
+    }
+  });
+
+  // وظيفة لتتبع أحداث النقر على الروابط (لأغراض التحليل)
+  document.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', function() {
+      const linkText = this.textContent.trim();
+      const linkHref = this.getAttribute('href');
+      console.log(`تم النقر على الرابط: ${linkText} (${linkHref})`);
+      
+      // هنا يمكنك إضافة كود لتتبع الإحصائيات إذا لزم الأمر
+      // trackLinkClick(linkText, linkHref);
+    });
+  });
 </script>
-
-</body>
-</html>
-
-
